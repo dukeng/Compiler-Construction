@@ -51,85 +51,254 @@ function returns [Function f]
 
 functionDecl returns[ FunctionDeclaration functionDecl]
         :
-        compoundType identifier '(' formalParameters ')'
-        {functionDecl = new FunctionDeclaration();}
+        arrayType=compoundType identifier=ID '(' fp=formalParameters ')'
+        {functionDecl = new FunctionDeclaration(arrayType, $identifier.text, fp);}
         ;
 
 functionBody returns [FunctionBody functionbody]
+@init
+{
+        functionbody = new FunctionBody();
+}
         :
-        '{' varDecl* statement* '}'
-        {functionbody = new FunctionBody();}
+        '{' (varDe=varDecl{
+          functionbody.variableDeclarationList.varDecList.add(varDe);
+        })* (state=statement{
+          functionbody.statementList.stateList.add(state);
+        })* '}'
+
         ;
 
+/*TODO: 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void' */
 
-compoundType: TYPE ('[' INTEGERCONSTANT ']')?
+compoundType returns[ArrayType arrayType]
+        :
+        t=TYPE ('[' i=INTEGERCONSTANT']')?
+        {
+          String theType = $t.text;
+          Type subType = new IntegerType();
+
+          if(theType.equals("int")) subType = new IntegerType();
+          else if (theType.equals("float")) subType = new FloatType(); 
+
+          arrayType = new ArrayType(subType);
+
+          if ($i != null){ // If there is compound type
+            arrayType.compoundType = new IntegerLiteral(Integer.valueOf($i.text));
+          }
+        }
+        ;
+
+formalParameters returns[FormalParameter fp]
+@init
+{
+        fp = new FormalParameter();
+}
+        : ( ct=compoundType identifier=ID ( mf = moreFormals {
+          fp.arrayTypes.add(mf.arrayTypes.get(0));
+          fp.identifiers.add(mf.identifiers.get(0));
+        })*) ?
+        {
+
+          if(ct != null && $identifier != null){
+            fp.arrayTypes.add(ct);
+            fp.identifiers.add(new Identifier($identifier.text));
+          }
+        }
+        ;
+
+moreFormals returns[FormalParameter fp ] 
+        : ',' ct=compoundType identifier=ID
+        {
+          fp = new FormalParameter();
+          fp.arrayTypes.add(ct);
+          fp.identifiers.add(new Identifier($identifier.text));
+        }
   ;
 
-formalParameters: (compoundType identifier moreFormals*)?
-  ;
 
-moreFormals: ',' compoundType identifier
-  ;
-
-
-statement
+statement returns [Statement statement]
 options {
     backtrack=true;
 }
       :     ';' | 
-            identifier '=' expr ';' |
-            identifier '[' expr ']' '=' expr ';'  |    
-
-            IF '(' expr ')' block ELSE block |            
-            IF '(' expr ')' block |
-            'while' '(' expr ')' block |
-            'println' expr ';' |            
-            'print' expr  ';' |
-
-            expr ';' |
-            'return' (expr)? ';'             
-
+            identifier=ID '=' e=expr ';'{
+              VariableAssignment varAssignment = new VariableAssignment(new Identifier($identifier.text), e);
+              statement = new AssignmentStatement(varAssignment);
+            }  |
+            identifier=ID '[' e1=expr ']' '=' e2=expr ';' {
+               ArrayAssignment arrayAssignment = new ArrayAssignment(new Identifier($identifier.text), e1, e2);
+              statement = new AssignmentStatement(arrayAssignment);
+            }  |    
+            IF '(' e=expr ')' bl1=block ELSE bl2=block {
+              System.out.println(e);
+              statement = new IfStatement(e,bl1,bl2);
+            }  |            
+            IF '(' e=expr ')' bl=block {
+              statement = new IfStatement(e,bl);
+            }  |
+            'while' '(' e=expr ')' bl=block {
+              statement = new WhileStatement(e,bl);
+            }  |
+            'println' e=expr ';' {
+              statement = new PrintLnStatement(e);
+            } |            
+            'print' e=expr ';' {
+              statement = new PrintStatement(e);
+            }  |
+            e = expr  ';'{
+              statement = new ExpressionStatement(e);
+            } |
+            'return' ';' {
+              statement = new ReturnStatement();
+            } |
+            'return' e=expr ';' {
+              statement = new ReturnStatement(e);
+            }
   ;
 
-varDecl: compoundType identifier ';'
+varDecl returns [VariableDeclaration variableDeclaration]
+          : arrayType=compoundType identifier=ID ';'
+          {
+            variableDeclaration = new VariableDeclaration(arrayType, $identifier.text);
+          }
   ;
 
-block: '{' statement* '}'
-  ;
-
-expr:  expr1 ('==' expr)?      
-  ;
-
-expr1: expr2 ('<' expr1)?
-  ;
-
-expr2: expr3 (('+' | '-') expr2)?
-  ;
-
-expr3: exprf ('*' expr3)?
-  ;
-
-exprf:  identifier '[' expr ']'|
-        identifier '(' exprList ')' |
-        identifier |
-        literal |
-        '(' expr ')'
-  ;
-
-literal:  stringConstant |
-          integerConstant |
-          floatConstant |
-          characterConstant |
-          'true' |
-          'false'
+block returns [Block block]
+@init{
+  StatementList statementList = new StatementList();
+}
+@after{
+  block = new Block(statementList);
+}
+          : '{' 
+          (stm=statement {
+              statementList.add(stm);
+            }
+          )* '}'
   ;
 
 
-exprList: (expr exprMore*)?
+
+expr returns [Expression e]
+@init{
+  Expression it = null;
+} 
+@after{
+  e = it;
+}
+      : e1 = lessThanExpr { it = e1; }
+        (
+          '==' e1 = lessThanExpr { it = new EqualityExpression(it, e1);  }
+        )*
   ;
 
-exprMore: ',' expr
+
+lessThanExpr returns [Expression e]
+@init{
+  Expression it = null;
+} 
+@after{
+  e = it;
+}
+      : e1 = addExpr { it = e1; }
+        (
+          '<' e1 = addExpr { it = new LessThanExpression(it, e1);  }
+        )*
   ;
+
+
+addExpr returns [Expression e]
+@init{
+  Expression it = null;
+} 
+@after{
+  e = it;
+}
+      : e1 = multExpr { it = e1; }
+        (
+            '+' e1 = multExpr { it = new AddExpression(it, e1);  }
+          | '-' e1 = multExpr { it = new SubtractExpression(it, e1);  } 
+        )*
+  ;
+
+
+multExpr returns [Expression e]
+@init{
+  Expression it = null;
+} 
+@after{
+  e = it;
+}
+      : e1 = exprf { it = e1; }
+       (
+          '*' e1 = exprf { it = new MultExpression(it, e1); }
+       )*
+  ;
+
+exprf returns [Expression e]
+            : identifier=ID '['  expression=expr ']' {
+                e = new ArrayReference(new Identifier($identifier.text), expression);
+              }|
+              identifier=ID '(' eList=exprList ')' {
+                e = new FunctionCall(new Identifier($identifier.text), eList);                
+              } |
+              lit = literal {
+                e = new WrapperExpression(lit);
+              } |
+              identifier = ID {
+                e = new WrapperExpression(new Identifier($identifier.text));
+              } |
+              '(' parenExpr = expr {
+                e = new ParenExpression(parenExpr);
+              } ')'
+  ;
+
+
+exprList returns [ExpressionList eList]
+@init{
+  ExpressionList it = new ExpressionList();
+} 
+@after{
+  eList = it;
+}
+            : (newExpr=expr {
+              it.add(newExpr);
+            } (moreExpr=exprMore{
+              it.add(moreExpr);
+            })*)?
+  ;
+
+exprMore returns [Expression e]
+            : ',' expression=expr{
+              e = expression;
+            }
+  ;
+
+literal returns [Literal lit]
+        :  
+          'true' {
+            lit = new BooleanLiteral(new Boolean(true));
+          } |
+          'false' {
+            lit = new BooleanLiteral(new Boolean(false));
+          } |
+          sC =stringConstant {
+            lit = new StringLiteral(String.valueOf($sC.text));
+          } |
+          iC = INTEGERCONSTANT {
+            lit = new IntegerLiteral(Integer.valueOf($iC.text));
+          } |
+          fC = floatConstant {
+            lit = new FloatLiteral(Float.valueOf($fC.text));
+          } |
+          cC = CHARACTERCONSTANT {
+            lit  = new CharacterLiteral(Character.valueOf(($cC.text).charAt(1)));
+          }
+  ;
+
+
+
 
 characterConstant: CHARACTERCONSTANT
   ;
@@ -143,8 +312,6 @@ stringConstant: STRINGCONSTANT
 integerConstant: INTEGERCONSTANT
   ;
 
-identifier : ID
-  ;
 
 type: TYPE
   ;

@@ -1,4 +1,42 @@
-void a(int a){
+float[10]  a(int a, int d, int e){
 	int b;
 	int c;
+
+	// STATEMENT
+		// ExpressionStatement
+	  2 + 1;
+	3 - 2;
+	"abc" + 'c';
+	'a' + 1;
+	1 + true;
+	2 + false;
+	'a' + 1.23;
+	"ewrwer" + 'e';
+
+	
+	
+	e;
+	a [abc];
+	a (abc);
+	b (a,b,c);
+	(a);
+	
+		// AssignmentStatement	
+	a = 1;
+	b = 1+2;
+	
+		// IfStatement
+	if(a==b){
+		a = b + 1;	
+	}
+	if(abc()){
+		(b);
+	}else{
+		d = "abc" + 'e';
+	}
+	if(1){
+
+	} else{
+	
+	}
 }

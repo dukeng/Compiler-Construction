@@ -13,7 +13,7 @@ compiler:
 clean:
 	rm *.class $(GNAME)*.java $(GNAME)__.g $(GNAME).tokens
 
-accept:
+a:
 	java Compiler tests/a2.ul
 reject:
 	java Compiler tests/initial_reject.ul
@@ -25,3 +25,9 @@ reject:
 	java Compiler tests/reject_6.ul
 	java Compiler tests/reject_7.ul
 	java Compiler tests/reject_8.ul
+
+i:	
+	cat tests/a2.ul
+e:
+	vim tests/a2.ul
+

@@ -1,8 +1,7 @@
-
 package AST;
 
 import Type.*;
-public abstract class Statement {
+public abstract class Literal {
 
     public abstract void accept (Visitor v);
 }
