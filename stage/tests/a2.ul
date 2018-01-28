@@ -11,32 +11,28 @@ float[10]  a(int a, int d, int e){
 	1 + true;
 	2 + false;
 	'a' + 1.23;
-	"ewrwer" + 'e';
-
-	
-	
+	"ewrwer" + 'e';	
 	e;
 	a [abc];
 	a (abc);
 	b (a,b,c);
 	(a);
-	
-		// AssignmentStatement	
-	a = 1;
-	b = 1+2;
-	
-		// IfStatement
-	if(a==b){
-		a = b + 1;	
-	}
-	if(abc()){
-		(b);
-	}else{
-		d = "abc" + 'e';
-	}
-	if(1){
 
-	} else{
-	
-	}
+	1 < 3;
+	1 * 3;
+	1 - 3;
+	1 + 3;
+
+}
+int a(){
+}
+string b(){
+}
+void c(){
+}
+char d(){
+}
+boolean e(){
+}
+float f(){
 }

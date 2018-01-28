@@ -1,7 +1,7 @@
 package AST;
 
 
-public class Function {
+public class Function extends ASTNode  {
     public FunctionDeclaration functionDecl;
     public FunctionBody functionBody;
 

@@ -10,6 +10,6 @@ public class EqualityExpression extends Expression{
 	}
 
 	public void accept (Visitor v ){
-		
+		v.visit(this);
 	}
 }

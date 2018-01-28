@@ -30,12 +30,11 @@ public class PrintVisitor implements Visitor{
     public void visit(Program program){
     	for(Function f: program.functionList){
     		f.accept(this);
+    		print("\n");
     	}
     }
 
-	public void visit (Function f){
-		System.out.println(f);
-		
+	public void visit (Function f){		
 		f.functionDecl.accept(this);
 		indentation += 1;
 		f.functionBody.accept(this);
@@ -50,9 +49,13 @@ public class PrintVisitor implements Visitor{
 			System.out.print(";\n");
 		}
 		for(Statement statement : f.statementList.stateList){
-			System.out.print(indent());
+			print(indent());
 			statement.accept(this);
-			System.out.print(";\n");
+			// System.out.print(statement instanceof IfStatement);
+			// System.out.print(statement instanceof WhileStatement);
+			if (!(statement instanceof IfStatement || statement instanceof WhileStatement)){
+				print(";\n");
+			}
 		}		
 		System.out.print("\n}\n");
 	}
@@ -66,7 +69,7 @@ public class PrintVisitor implements Visitor{
 	}
 
 	public void visit(TypeNode f){
-
+		print("TypeNode debug");
 	}
 
 	public void visit(Type f){
@@ -78,15 +81,16 @@ public class PrintVisitor implements Visitor{
 	}
 
 	public void visit(StringLiteral f){
-		System.out.print(f.value);
+
+		System.out.print("\"" + f.value + "\"");
 	}
 
 	public void visit(FloatLiteral f){
-		System.out.print( "(Float)" +f.value);
+		System.out.print(f.value);
 	}
 
 	public void visit(BooleanLiteral f){
-		System.out.print( "(Boolean)" + f.value);
+		System.out.print(f.value);
 	}
 
 	public void visit(CharacterLiteral f){
@@ -101,7 +105,8 @@ public class PrintVisitor implements Visitor{
 	public void visit(ArrayType f){
 		String builder = f.subType.toString();
 		if (f.compoundType != null) builder += "[" + f.compoundType.value + "]";
-		System.out.print(builder);
+		print(builder);
+		print(" ");
 	}
 
 	public void visit (FormalParameter f){
@@ -110,7 +115,7 @@ public class PrintVisitor implements Visitor{
 			f.arrayTypes.get(i).accept(this);
 			f.identifiers.get(i).accept(this);
 			if(i != f.arrayTypes.size() -1 ){
-				System.out.print(",");
+				System.out.print(", ");
 			}
 		}
 		System.out.print(")");
@@ -123,27 +128,27 @@ public class PrintVisitor implements Visitor{
 	}
 	public void visit(AddExpression f){
 		f.e1.accept(this);
-		System.out.print (" + ");
+		print ("+");
 		f.e2.accept(this);
 	}
 	public void visit(SubtractExpression f){
 		f.e1.accept(this);
-		System.out.print (" - ");
+		print ("-");
 		f.e2.accept(this);	
 	}	
 	public void visit(MultExpression f){
 		f.e1.accept(this);
-		System.out.print (" * ");
+		print ("*");
 		f.e2.accept(this);
 	}
 	public void visit(LessThanExpression f){
 		f.e1.accept(this);
-		System.out.print (" < ");
+		print ("<");
 		f.e2.accept(this);	
 	}
 	public void visit(EqualityExpression f){
 		f.e1.accept(this);
-		System.out.print (" == ");
+		print ("==");
 		f.e2.accept(this);
 	}	
 
@@ -152,7 +157,6 @@ public class PrintVisitor implements Visitor{
 	}
 
 	public void visit(WrapperExpression f){
-		debug("WrapperExpression ");
 		if(f.literal != null){
 			f.literal.accept(this);
 		}else if (f.identifier != null){
@@ -161,13 +165,11 @@ public class PrintVisitor implements Visitor{
 		
 	}
 	public void visit(ParenExpression f){
-		debug ("ParenExpression ");
 		print("(");
 		f.e.accept(this);
 		print(")");
 	}
 	public void visit(FunctionCall f){
-		debug ("FunctionCall ");
 		f.identifier.accept(this);
 		print("(");
 		for(int i = 0; i <  f.eList.expressionList.size(); i ++){
@@ -179,7 +181,6 @@ public class PrintVisitor implements Visitor{
 		print(")");
 	}
 	public void visit(ArrayReference f){
-		debug("ArrayReference ");
 		f.identifier.accept(this);
 		print("[");
 		f.e.accept(this);
@@ -199,7 +200,7 @@ public class PrintVisitor implements Visitor{
 		print("]");
 		print("=");
 		f.e2.accept(this);
-	}	
+	}
 
 	public void visit(AssignmentStatement f){
 		if (f.varAssignment != null){
@@ -231,24 +232,36 @@ public class PrintVisitor implements Visitor{
 		for (Statement statement :f.statementList.stateList){
 			print(indent());
 			statement.accept(this);
-			print(";\n");
+			if (!(statement instanceof IfStatement || statement instanceof WhileStatement)){
+				print(";\n");
+			}
 		}
 		indentation -= 1;
 		print( indent() + "}\n");
 	}
 
-	public void visit(WhileStatement f){
-		
+	public void visit(WhileStatement f){	
+		print("while ");
+		print("(");
+		f.e.accept(this);
+		print(")");
+		f.block.accept(this);
+
 	}	
 
 	public void visit(PrintStatement f){
-		
+		print("print ");
+		f.e.accept(this);
 	}
 
 	public void visit(PrintLnStatement f){
-		
+		print("printLn ");
+		f.e.accept(this);		
 	}
 	public void visit(ReturnStatement f){
-		
+		print("return ");
+		if (f.e != null){
+			f.e.accept(this);
+		}
 	}		
 }

@@ -64,7 +64,9 @@ functionBody returns [FunctionBody functionbody]
         '{' (varDe=varDecl{
           functionbody.variableDeclarationList.varDecList.add(varDe);
         })* (state=statement{
-          functionbody.statementList.stateList.add(state);
+          if(state != null){
+            functionbody.statementList.stateList.add(state);
+          }
         })* '}'
 
         ;
@@ -73,13 +75,17 @@ functionBody returns [FunctionBody functionbody]
 
 compoundType returns[ArrayType arrayType]
         :
-        t=TYPE ('[' i=INTEGERCONSTANT']')?
+        t=TYPE ('['  i=INTEGERCONSTANT ']')?
         {
           String theType = $t.text;
-          Type subType = new IntegerType();
+          Type subType = new IntegerType(); // boilerplate
 
           if(theType.equals("int")) subType = new IntegerType();
           else if (theType.equals("float")) subType = new FloatType(); 
+          else if (theType.equals("char")) subType = new CharType(); 
+          else if (theType.equals("string")) subType = new StringType(); 
+          else if (theType.equals("boolean")) subType = new BooleanType(); 
+          else if (theType.equals("void")) subType = new VoidType(); 
 
           arrayType = new ArrayType(subType);
 
@@ -94,17 +100,19 @@ formalParameters returns[FormalParameter fp]
 {
         fp = new FormalParameter();
 }
-        : ( ct=compoundType identifier=ID ( mf = moreFormals {
+        : ( ct=compoundType {
+          if (ct != null){
+            fp.arrayTypes.add(ct);
+          }
+
+        } identifier=ID {
+          fp.identifiers.add(new Identifier($identifier.text));
+
+        } ( mf = moreFormals {
           fp.arrayTypes.add(mf.arrayTypes.get(0));
           fp.identifiers.add(mf.identifiers.get(0));
         })*) ?
-        {
 
-          if(ct != null && $identifier != null){
-            fp.arrayTypes.add(ct);
-            fp.identifiers.add(new Identifier($identifier.text));
-          }
-        }
         ;
 
 moreFormals returns[FormalParameter fp ] 
@@ -121,7 +129,10 @@ statement returns [Statement statement]
 options {
     backtrack=true;
 }
-      :     ';' | 
+      :     ';' {
+              statement = null;
+
+            }| 
             identifier=ID '=' e=expr ';'{
               VariableAssignment varAssignment = new VariableAssignment(new Identifier($identifier.text), e);
               statement = new AssignmentStatement(varAssignment);
@@ -131,7 +142,6 @@ options {
               statement = new AssignmentStatement(arrayAssignment);
             }  |    
             IF '(' e=expr ')' bl1=block ELSE bl2=block {
-              System.out.println(e);
               statement = new IfStatement(e,bl1,bl2);
             }  |            
             IF '(' e=expr ')' bl=block {
@@ -284,7 +294,8 @@ literal returns [Literal lit]
             lit = new BooleanLiteral(new Boolean(false));
           } |
           sC =stringConstant {
-            lit = new StringLiteral(String.valueOf($sC.text));
+            String str = String.valueOf($sC.text);
+            lit = new StringLiteral(str.substring(1,str.length()-1));
           } |
           iC = INTEGERCONSTANT {
             lit = new IntegerLiteral(Integer.valueOf($iC.text));

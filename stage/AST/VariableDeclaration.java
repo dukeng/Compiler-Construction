@@ -2,7 +2,7 @@ package AST;
 
 import Type.*;
 
-public class VariableDeclaration {
+public class VariableDeclaration  extends ASTNode {
 
 	public ArrayType arrayType;
 	public Identifier identifier;

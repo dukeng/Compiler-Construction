@@ -2,11 +2,12 @@ package AST;
 
 import Type.*;
 
-public class FunctionDeclaration {
+public class FunctionDeclaration extends ASTNode {
 
-		public ArrayType arrayType;
-		public Identifier identifier;
-		public FormalParameter formalParameter;
+	public ArrayType arrayType;
+	public Identifier identifier;
+	public FormalParameter formalParameter;
+        
         public FunctionDeclaration (ArrayType arrayType, String identifier, FormalParameter formalParameter ) {
         	this.arrayType = arrayType;
 	       	this.identifier = new Identifier(identifier);
@@ -15,5 +16,5 @@ public class FunctionDeclaration {
 
         public void accept (Visitor v) {
                 v.visit(this);
-		}
+	}
 }

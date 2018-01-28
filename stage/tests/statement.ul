@@ -1,0 +1,55 @@
+
+void main(void a){
+		// IfStatement
+	if(a==b){
+		a = b + 1;	
+	}
+	if(abc()){
+		(b);
+	}else{
+		d = "abc" + 'e';
+	}
+	if(1){
+
+	} else{
+	
+	}
+
+		// While
+	while(1+ 2 == 3 + 3 + 3){
+		d;
+	}
+	while(abcdef){
+		if (1){
+			helloworld();
+			worldhello(a,b,c,e,e, 3+3, "2" + "3");
+		}
+		else{
+			a;
+			b + 1;
+			c();
+			if (abc){
+				if (def){
+					makeDir(d());
+				}
+			}
+		}
+	}
+		// Print
+	print "werwerwer";
+	println "werwdb";
+	print awfwef(wrwer, werw, werwe);
+
+		// Return
+	return;
+	return "Rwerwer";
+	return abc(ewer);
+
+		//Assignment
+	a = b+c;
+	a[10] = d+e;
+	b[a] = a;
+	c["wrong"] = true;
+	c["right"] = false;
+
+}

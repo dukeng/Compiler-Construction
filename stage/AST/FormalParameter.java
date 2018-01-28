@@ -4,7 +4,7 @@ import Type.*;
 
 import java.util.*;
 
-public class FormalParameter {
+public class FormalParameter extends ASTNode  {
 
 	public ArrayList<ArrayType> arrayTypes = new ArrayList<ArrayType>();
 	public ArrayList<Identifier> identifiers = new ArrayList<Identifier>();

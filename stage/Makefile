@@ -13,8 +13,13 @@ compiler:
 clean:
 	rm *.class $(GNAME)*.java $(GNAME)__.g $(GNAME).tokens
 
-a:
+accept:
 	java Compiler tests/a2.ul
+	java Compiler tests/statement.ul
+	java Compiler tests/functions.ul
+	java Compiler tests/expression.ul
+	java Compiler tests/assignment.ul
+	
 reject:
 	java Compiler tests/initial_reject.ul
 	java Compiler tests/reject_1.ul
@@ -30,4 +35,12 @@ i:
 	cat tests/a2.ul
 e:
 	vim tests/a2.ul
+ii:
+	cat tests/a22.ul
+
+ee:
+	vim tests/a22.ul
+
+aa:
+	java Compiler tests/a22.ul
 

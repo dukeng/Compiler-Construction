@@ -1,7 +1,7 @@
 package AST;
 
 import java.util.*;
-public class Program {
+public class Program extends ASTNode {
         public ArrayList<Function> functionList;
         public Program () {
                 functionList = new ArrayList();

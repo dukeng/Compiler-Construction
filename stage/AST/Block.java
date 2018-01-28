@@ -3,7 +3,7 @@ package AST;
 import Type.*;
 import java.util.*;
 
-public class Block {
+public class Block  extends ASTNode {
 
 		public StatementList statementList;
         public Block (StatementList statementList) {

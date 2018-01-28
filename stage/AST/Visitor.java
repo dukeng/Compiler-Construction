@@ -15,7 +15,6 @@ public interface Visitor
 
 	public void visit (Block b);
 
-	
 	public void visit (ExpressionStatement e);
 	public void visit (FunctionCall f);
 	public void visit (ArrayReference f);

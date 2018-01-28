@@ -1,6 +1,6 @@
 package AST;
 
-public class VariableAssignment
+public class VariableAssignment extends ASTNode 
 {
 	Identifier id;
 	Expression e;

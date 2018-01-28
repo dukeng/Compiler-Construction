@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 ulNoActions.g 2018-01-24 12:15:46
+// $ANTLR 3.0.1 ulNoActions.g 2018-01-27 22:12:24
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -415,7 +415,7 @@ public class ulNoActionsLexer extends Lexer {
     public final void mTYPE() throws RecognitionException {
         try {
             int _type = TYPE;
-            // ulNoActions.g:321:7: ( 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void' )
+            // ulNoActions.g:332:7: ( 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void' )
             int alt1=6;
             switch ( input.LA(1) ) {
             case 'i':
@@ -450,14 +450,14 @@ public class ulNoActionsLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("321:1: TYPE : ( 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void' );", 1, 0, input);
+                    new NoViableAltException("332:1: TYPE : ( 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void' );", 1, 0, input);
 
                 throw nvae;
             }
 
             switch (alt1) {
                 case 1 :
-                    // ulNoActions.g:321:9: 'int'
+                    // ulNoActions.g:332:9: 'int'
                     {
                     match("int"); 
 
@@ -465,7 +465,7 @@ public class ulNoActionsLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ulNoActions.g:321:17: 'float'
+                    // ulNoActions.g:332:17: 'float'
                     {
                     match("float"); 
 
@@ -473,7 +473,7 @@ public class ulNoActionsLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ulNoActions.g:321:27: 'char'
+                    // ulNoActions.g:332:27: 'char'
                     {
                     match("char"); 
 
@@ -481,7 +481,7 @@ public class ulNoActionsLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ulNoActions.g:321:36: 'string'
+                    // ulNoActions.g:332:36: 'string'
                     {
                     match("string"); 
 
@@ -489,7 +489,7 @@ public class ulNoActionsLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // ulNoActions.g:321:47: 'boolean'
+                    // ulNoActions.g:332:47: 'boolean'
                     {
                     match("boolean"); 
 
@@ -497,7 +497,7 @@ public class ulNoActionsLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // ulNoActions.g:321:59: 'void'
+                    // ulNoActions.g:332:59: 'void'
                     {
                     match("void"); 
 
@@ -517,8 +517,8 @@ public class ulNoActionsLexer extends Lexer {
     public final void mIF() throws RecognitionException {
         try {
             int _type = IF;
-            // ulNoActions.g:324:5: ( 'if' )
-            // ulNoActions.g:324:7: 'if'
+            // ulNoActions.g:335:5: ( 'if' )
+            // ulNoActions.g:335:7: 'if'
             {
             match("if"); 
 
@@ -536,8 +536,8 @@ public class ulNoActionsLexer extends Lexer {
     public final void mELSE() throws RecognitionException {
         try {
             int _type = ELSE;
-            // ulNoActions.g:327:7: ( 'else' )
-            // ulNoActions.g:327:9: 'else'
+            // ulNoActions.g:338:7: ( 'else' )
+            // ulNoActions.g:338:9: 'else'
             {
             match("else"); 
 
@@ -555,11 +555,11 @@ public class ulNoActionsLexer extends Lexer {
     public final void mCHARACTERCONSTANT() throws RecognitionException {
         try {
             int _type = CHARACTERCONSTANT;
-            // ulNoActions.g:330:18: ( '\\'' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' ) '\\'' )
-            // ulNoActions.g:330:20: '\\'' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' ) '\\''
+            // ulNoActions.g:341:18: ( '\\'' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' ) '\\'' )
+            // ulNoActions.g:341:20: '\\'' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' ) '\\''
             {
             match('\''); 
-            // ulNoActions.g:330:25: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' )
+            // ulNoActions.g:341:25: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' )
             int alt2=17;
             switch ( input.LA(1) ) {
             case 'a':
@@ -708,119 +708,119 @@ public class ulNoActionsLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("330:25: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' )", 2, 0, input);
+                    new NoViableAltException("341:25: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\\\n' | '0' .. '9' )", 2, 0, input);
 
                 throw nvae;
             }
 
             switch (alt2) {
                 case 1 :
-                    // ulNoActions.g:330:26: 'a' .. 'z'
+                    // ulNoActions.g:341:26: 'a' .. 'z'
                     {
                     matchRange('a','z'); 
 
                     }
                     break;
                 case 2 :
-                    // ulNoActions.g:330:37: 'A' .. 'Z'
+                    // ulNoActions.g:341:37: 'A' .. 'Z'
                     {
                     matchRange('A','Z'); 
 
                     }
                     break;
                 case 3 :
-                    // ulNoActions.g:330:48: '_'
+                    // ulNoActions.g:341:48: '_'
                     {
                     match('_'); 
 
                     }
                     break;
                 case 4 :
-                    // ulNoActions.g:330:54: ' '
+                    // ulNoActions.g:341:54: ' '
                     {
                     match(' '); 
 
                     }
                     break;
                 case 5 :
-                    // ulNoActions.g:330:59: '?'
+                    // ulNoActions.g:341:59: '?'
                     {
                     match('?'); 
 
                     }
                     break;
                 case 6 :
-                    // ulNoActions.g:330:65: '!'
+                    // ulNoActions.g:341:65: '!'
                     {
                     match('!'); 
 
                     }
                     break;
                 case 7 :
-                    // ulNoActions.g:330:71: '@'
+                    // ulNoActions.g:341:71: '@'
                     {
                     match('@'); 
 
                     }
                     break;
                 case 8 :
-                    // ulNoActions.g:330:77: '#'
+                    // ulNoActions.g:341:77: '#'
                     {
                     match('#'); 
 
                     }
                     break;
                 case 9 :
-                    // ulNoActions.g:330:83: '$'
+                    // ulNoActions.g:341:83: '$'
                     {
                     match('$'); 
 
                     }
                     break;
                 case 10 :
-                    // ulNoActions.g:330:89: '%'
+                    // ulNoActions.g:341:89: '%'
                     {
                     match('%'); 
 
                     }
                     break;
                 case 11 :
-                    // ulNoActions.g:330:95: '^'
+                    // ulNoActions.g:341:95: '^'
                     {
                     match('^'); 
 
                     }
                     break;
                 case 12 :
-                    // ulNoActions.g:330:101: '('
+                    // ulNoActions.g:341:101: '('
                     {
                     match('('); 
 
                     }
                     break;
                 case 13 :
-                    // ulNoActions.g:330:107: ')'
+                    // ulNoActions.g:341:107: ')'
                     {
                     match(')'); 
 
                     }
                     break;
                 case 14 :
-                    // ulNoActions.g:330:113: '+'
+                    // ulNoActions.g:341:113: '+'
                     {
                     match('+'); 
 
                     }
                     break;
                 case 15 :
-                    // ulNoActions.g:330:119: '='
+                    // ulNoActions.g:341:119: '='
                     {
                     match('='); 
 
                     }
                     break;
                 case 16 :
-                    // ulNoActions.g:330:125: '\\\\n'
+                    // ulNoActions.g:341:125: '\\\\n'
                     {
                     match("\\n"); 
 
@@ -828,7 +828,7 @@ public class ulNoActionsLexer extends Lexer {
                     }
                     break;
                 case 17 :
-                    // ulNoActions.g:330:134: '0' .. '9'
+                    // ulNoActions.g:341:134: '0' .. '9'
                     {
                     matchRange('0','9'); 
 
@@ -852,11 +852,11 @@ public class ulNoActionsLexer extends Lexer {
     public final void mSTRINGCONSTANT() throws RecognitionException {
         try {
             int _type = STRINGCONSTANT;
-            // ulNoActions.g:333:15: ( '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' | '\\'' | '0' .. '9' )* '\"' )
-            // ulNoActions.g:333:17: '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' | '\\'' | '0' .. '9' )* '\"'
+            // ulNoActions.g:344:15: ( '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' | '\\'' | '0' .. '9' )* '\"' )
+            // ulNoActions.g:344:17: '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' | '\\'' | '0' .. '9' )* '\"'
             {
             match('\"'); 
-            // ulNoActions.g:333:21: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' | '\\'' | '0' .. '9' )*
+            // ulNoActions.g:344:21: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | ' ' | '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' | '\\'' | '0' .. '9' )*
             loop3:
             do {
                 int alt3=2;
@@ -905,10 +905,10 @@ public class ulNoActionsLexer extends Lexer {
     public final void mINTEGERCONSTANT() throws RecognitionException {
         try {
             int _type = INTEGERCONSTANT;
-            // ulNoActions.g:336:16: ( ( '0' .. '9' )+ )
-            // ulNoActions.g:336:18: ( '0' .. '9' )+
+            // ulNoActions.g:347:16: ( ( '0' .. '9' )+ )
+            // ulNoActions.g:347:18: ( '0' .. '9' )+
             {
-            // ulNoActions.g:336:18: ( '0' .. '9' )+
+            // ulNoActions.g:347:18: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -922,7 +922,7 @@ public class ulNoActionsLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ulNoActions.g:336:19: '0' .. '9'
+            	    // ulNoActions.g:347:19: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -952,10 +952,10 @@ public class ulNoActionsLexer extends Lexer {
     public final void mFLOATCONSTANT() throws RecognitionException {
         try {
             int _type = FLOATCONSTANT;
-            // ulNoActions.g:339:14: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )+ )
-            // ulNoActions.g:339:16: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
+            // ulNoActions.g:350:14: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )+ )
+            // ulNoActions.g:350:16: ( '0' .. '9' )+ '.' ( '0' .. '9' )+
             {
-            // ulNoActions.g:339:16: ( '0' .. '9' )+
+            // ulNoActions.g:350:16: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -969,7 +969,7 @@ public class ulNoActionsLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ulNoActions.g:339:17: '0' .. '9'
+            	    // ulNoActions.g:350:17: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -986,7 +986,7 @@ public class ulNoActionsLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ulNoActions.g:339:30: ( '0' .. '9' )+
+            // ulNoActions.g:350:30: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -1000,7 +1000,7 @@ public class ulNoActionsLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ulNoActions.g:339:31: '0' .. '9'
+            	    // ulNoActions.g:350:31: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1030,8 +1030,8 @@ public class ulNoActionsLexer extends Lexer {
     public final void mID() throws RecognitionException {
         try {
             int _type = ID;
-            // ulNoActions.g:342:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ulNoActions.g:342:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ulNoActions.g:353:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ulNoActions.g:353:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1043,7 +1043,7 @@ public class ulNoActionsLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ulNoActions.g:342:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ulNoActions.g:353:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop7:
             do {
                 int alt7=2;
@@ -1091,10 +1091,10 @@ public class ulNoActionsLexer extends Lexer {
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // ulNoActions.g:346:9: ( ( '\\t' | ' ' | ( '\\r' | '\\n' ) )+ )
-            // ulNoActions.g:346:11: ( '\\t' | ' ' | ( '\\r' | '\\n' ) )+
+            // ulNoActions.g:357:9: ( ( '\\t' | ' ' | ( '\\r' | '\\n' ) )+ )
+            // ulNoActions.g:357:11: ( '\\t' | ' ' | ( '\\r' | '\\n' ) )+
             {
-            // ulNoActions.g:346:11: ( '\\t' | ' ' | ( '\\r' | '\\n' ) )+
+            // ulNoActions.g:357:11: ( '\\t' | ' ' | ( '\\r' | '\\n' ) )+
             int cnt8=0;
             loop8:
             do {
@@ -1148,12 +1148,12 @@ public class ulNoActionsLexer extends Lexer {
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // ulNoActions.g:349:9: ( '//' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' | EOF ) )
-            // ulNoActions.g:349:11: '//' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' | EOF )
+            // ulNoActions.g:360:9: ( '//' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' | EOF ) )
+            // ulNoActions.g:360:11: '//' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' | EOF )
             {
             match("//"); 
 
-            // ulNoActions.g:349:16: (~ ( '\\r' | '\\n' ) )*
+            // ulNoActions.g:360:16: (~ ( '\\r' | '\\n' ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1166,7 +1166,7 @@ public class ulNoActionsLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ulNoActions.g:349:16: ~ ( '\\r' | '\\n' )
+            	    // ulNoActions.g:360:16: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1187,7 +1187,7 @@ public class ulNoActionsLexer extends Lexer {
                 }
             } while (true);
 
-            // ulNoActions.g:349:32: ( '\\r' | '\\n' | EOF )
+            // ulNoActions.g:360:32: ( '\\r' | '\\n' | EOF )
             int alt10=3;
             switch ( input.LA(1) ) {
             case '\r':
@@ -1205,21 +1205,21 @@ public class ulNoActionsLexer extends Lexer {
 
             switch (alt10) {
                 case 1 :
-                    // ulNoActions.g:349:33: '\\r'
+                    // ulNoActions.g:360:33: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 2 :
-                    // ulNoActions.g:349:40: '\\n'
+                    // ulNoActions.g:360:40: '\\n'
                     {
                     match('\n'); 
 
                     }
                     break;
                 case 3 :
-                    // ulNoActions.g:349:47: EOF
+                    // ulNoActions.g:360:47: EOF
                     {
                     match(EOF); 
 

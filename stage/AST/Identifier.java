@@ -1,7 +1,7 @@
 package AST;
 
 import Type.*;
-public class Identifier {
+public class Identifier extends ASTNode {
 
 	public String name;
     public Identifier (String name) {

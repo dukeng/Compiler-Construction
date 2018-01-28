@@ -3,7 +3,7 @@ package AST;
 
 
 import java.util.*;
-public class FunctionBody {
+public class FunctionBody extends ASTNode {
 
 
 		public VariableDeclarationList variableDeclarationList = new VariableDeclarationList();
