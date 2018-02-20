@@ -30,7 +30,17 @@ reject:
 	java Compiler tests/reject_6.ul
 	java Compiler tests/reject_7.ul
 	java Compiler tests/reject_8.ul
+m:
+	./runall.sh
 
+r:
+	
+	java Compiler tests/no_func.ul
+	java Compiler tests/two_main.ul
+	java Compiler tests/no_main.ul
+	java Compiler tests/same_func_name.ul
+	java Compiler tests/main_with_param.ul
+	java Compiler tests/main_with_non_voidtype.ul
 i:	
 	cat tests/a2.ul
 e:
@@ -43,4 +53,5 @@ ee:
 
 aa:
 	java Compiler tests/a22.ul
+
 

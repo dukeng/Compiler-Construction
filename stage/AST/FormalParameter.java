@@ -12,6 +12,10 @@ public class FormalParameter extends ASTNode  {
 
     }
 
+    public boolean isEmpty(){
+        return arrayTypes.size() == 0 && identifiers.size() == 0;
+    }
+
 
     public void accept (Visitor v) {
             v.visit(this);

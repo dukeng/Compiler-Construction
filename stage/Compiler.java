@@ -32,8 +32,10 @@ public class Compiler {
 
 		try {
 			Program program = parser.program();
-			PrintVisitor visitor = new PrintVisitor();
-			program.accept(visitor);
+			// PrintVisitor visitor = new PrintVisitor();
+			// program.accept(visitor);
+			TypeChecker typeChecker = new TypeChecker();
+			program.accept(typeChecker);
 		}
 		catch (RecognitionException e )	{
 			// A lexical or parsing error occured.

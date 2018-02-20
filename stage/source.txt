@@ -1,0 +1,15 @@
+./tests/no_func.ul
+./tests/undefined_local_var_array_used.ul
+./tests/param_hide_name_of_function.ul
+./tests/same_func_name.ul
+./tests/undefined_function_call_used.ul
+./tests/undefined_local_var_used.ul
+./tests/local_param_with_void_type.ul
+./tests/main_with_non_voidtype.ul
+./tests/duplicate_var_name.ul
+./tests/no_main.ul
+./tests/void_type_param.ul
+./tests/two_main.ul
+./tests/duplicate_param_name.ul
+./tests/local_var_hide_name_of_param.ul
+./tests/main_with_param.ul

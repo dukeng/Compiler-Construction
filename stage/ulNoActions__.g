@@ -21,43 +21,43 @@ T31 : '*' ;
 T32 : 'true' ;
 T33 : 'false' ;
 
-// $ANTLR src "ulNoActions.g" 332
+// $ANTLR src "ulNoActions.g" 334
 TYPE  : 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void'
   ;
 
-// $ANTLR src "ulNoActions.g" 335
+// $ANTLR src "ulNoActions.g" 337
 IF  : 'if'
   ;
 
-// $ANTLR src "ulNoActions.g" 338
+// $ANTLR src "ulNoActions.g" 340
 ELSE  : 'else'
   ;
 
-// $ANTLR src "ulNoActions.g" 341
+// $ANTLR src "ulNoActions.g" 343
 CHARACTERCONSTANT: '\'' ('a'..'z' | 'A'..'Z' | '_' | ' '| '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\\n' |  '0'..'9') '\''
   ;
 
-// $ANTLR src "ulNoActions.g" 344
+// $ANTLR src "ulNoActions.g" 346
 STRINGCONSTANT: '"' ('a'..'z' | 'A'..'Z' | '_' | ' '| '?' | '!' | '@' | '#' | '$' | '%' | '^' | '(' | ')' | '+' | '=' | '\n' | '\'' |  '0'..'9')* '"'
   ;
 
-// $ANTLR src "ulNoActions.g" 347
+// $ANTLR src "ulNoActions.g" 349
 INTEGERCONSTANT: ('0'..'9')+
   ;
 
-// $ANTLR src "ulNoActions.g" 350
+// $ANTLR src "ulNoActions.g" 352
 FLOATCONSTANT: ('0'..'9')+'.'('0'..'9')+
   ;
 
-// $ANTLR src "ulNoActions.g" 353
+// $ANTLR src "ulNoActions.g" 355
 ID  : ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*  
   ;
   
 
-// $ANTLR src "ulNoActions.g" 357
+// $ANTLR src "ulNoActions.g" 359
 WS      : ( '\t' | ' ' | ('\r' | '\n') )+ { $channel = HIDDEN;}
         ;
 
-// $ANTLR src "ulNoActions.g" 360
+// $ANTLR src "ulNoActions.g" 362
 COMMENT : '//' ~('\r' | '\n')* ('\r' | '\n' | EOF) { $channel = HIDDEN;}
         ;

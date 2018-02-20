@@ -52,7 +52,7 @@ function returns [Function f]
 functionDecl returns[ FunctionDeclaration functionDecl]
         :
         arrayType=compoundType identifier=ID '(' fp=formalParameters ')'
-        {functionDecl = new FunctionDeclaration(arrayType, $identifier.text, fp);}
+        {functionDecl = new FunctionDeclaration(arrayType, $identifier.text, fp, $identifier.line, $identifier.pos );}
         ;
 
 functionBody returns [FunctionBody functionbody]
@@ -88,6 +88,8 @@ compoundType returns[ArrayType arrayType]
           else if (theType.equals("void")) subType = new VoidType(); 
 
           arrayType = new ArrayType(subType);
+          arrayType.line = $t.line;
+          arrayType.pos = $t.pos;
 
           if ($i != null){ // If there is compound type
             arrayType.compoundType = new IntegerLiteral(Integer.valueOf($i.text));
@@ -106,7 +108,7 @@ formalParameters returns[FormalParameter fp]
           }
 
         } identifier=ID {
-          fp.identifiers.add(new Identifier($identifier.text));
+          fp.identifiers.add(new Identifier($identifier.text, $identifier.line, $identifier.pos));
 
         } ( mf = moreFormals {
           fp.arrayTypes.add(mf.arrayTypes.get(0));
@@ -120,7 +122,7 @@ moreFormals returns[FormalParameter fp ]
         {
           fp = new FormalParameter();
           fp.arrayTypes.add(ct);
-          fp.identifiers.add(new Identifier($identifier.text));
+          fp.identifiers.add(new Identifier($identifier.text, $identifier.line, $identifier.pos));
         }
   ;
 
@@ -134,11 +136,11 @@ options {
 
             }| 
             identifier=ID '=' e=expr ';'{
-              VariableAssignment varAssignment = new VariableAssignment(new Identifier($identifier.text), e);
+              VariableAssignment varAssignment = new VariableAssignment(new Identifier($identifier.text, $identifier.line, $identifier.pos), e);
               statement = new AssignmentStatement(varAssignment);
             }  |
             identifier=ID '[' e1=expr ']' '=' e2=expr ';' {
-               ArrayAssignment arrayAssignment = new ArrayAssignment(new Identifier($identifier.text), e1, e2);
+               ArrayAssignment arrayAssignment = new ArrayAssignment(new Identifier($identifier.text, $identifier.line, $identifier.pos), e1, e2);
               statement = new AssignmentStatement(arrayAssignment);
             }  |    
             IF '(' e=expr ')' bl1=block ELSE bl2=block {
@@ -170,7 +172,7 @@ options {
 varDecl returns [VariableDeclaration variableDeclaration]
           : arrayType=compoundType identifier=ID ';'
           {
-            variableDeclaration = new VariableDeclaration(arrayType, $identifier.text);
+            variableDeclaration = new VariableDeclaration(arrayType, $identifier.text, $identifier.line, $identifier.pos);
           }
   ;
 
@@ -248,16 +250,16 @@ multExpr returns [Expression e]
 
 exprf returns [Expression e]
             : identifier=ID '['  expression=expr ']' {
-                e = new ArrayReference(new Identifier($identifier.text), expression);
+                e = new ArrayReference(new Identifier($identifier.text, $identifier.line, $identifier.pos), expression);
               }|
               identifier=ID '(' eList=exprList ')' {
-                e = new FunctionCall(new Identifier($identifier.text), eList);                
+                e = new FunctionCall(new Identifier($identifier.text, $identifier.line, $identifier.pos), eList);                
               } |
               lit = literal {
                 e = new WrapperExpression(lit);
               } |
               identifier = ID {
-                e = new WrapperExpression(new Identifier($identifier.text));
+                e = new WrapperExpression(new Identifier($identifier.text, $identifier.line, $identifier.pos));
               } |
               '(' parenExpr = expr {
                 e = new ParenExpression(parenExpr);

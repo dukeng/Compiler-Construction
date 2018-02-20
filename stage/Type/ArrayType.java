@@ -7,6 +7,8 @@ public class ArrayType extends Type {
 
 	public Type subType;
 	public IntegerLiteral compoundType;
+	public int line;
+	public int pos;
 	
     public ArrayType (Type subType) {
     	this.subType = subType;
