@@ -289,24 +289,24 @@ exprMore returns [Expression e]
 
 literal returns [Literal lit]
         :  
-          'true' {
-            lit = new BooleanLiteral(new Boolean(true));
+          tr = TRUE {
+            lit = new BooleanLiteral(new Boolean(true), $tr.line, $tr.pos);
           } |
-          'false' {
-            lit = new BooleanLiteral(new Boolean(false));
+          fl = FALSE {
+            lit = new BooleanLiteral(new Boolean(false), $fl.line, $fl.pos);
           } |
-          sC =stringConstant {
+          sC =STRINGCONSTANT {
             String str = String.valueOf($sC.text);
-            lit = new StringLiteral(str.substring(1,str.length()-1));
+            lit = new StringLiteral(str.substring(1,str.length()-1), $sC.line, $sC.pos);
           } |
           iC = INTEGERCONSTANT {
-            lit = new IntegerLiteral(Integer.valueOf($iC.text));
+            lit = new IntegerLiteral(Integer.valueOf($iC.text), $iC.line, $iC.pos);
           } |
-          fC = floatConstant {
-            lit = new FloatLiteral(Float.valueOf($fC.text));
+          fC = FLOATCONSTANT {
+            lit = new FloatLiteral(Float.valueOf($fC.text), $fC.line, $fC.pos);
           } |
           cC = CHARACTERCONSTANT {
-            lit  = new CharacterLiteral(Character.valueOf(($cC.text).charAt(1)));
+            lit  = new CharacterLiteral(Character.valueOf(($cC.text).charAt(1)), $cC.line, $cC.pos);
           }
   ;
 
@@ -325,6 +325,10 @@ stringConstant: STRINGCONSTANT
 integerConstant: INTEGERCONSTANT
   ;
 
+TRUE  : 'true'
+  ;
+FALSE : 'false'
+  ;
 
 type: TYPE
   ;
@@ -333,6 +337,7 @@ type: TYPE
 
 TYPE  : 'int' | 'float' | 'char' | 'string' | 'boolean' | 'void'
   ;
+
 
 IF  : 'if'
   ;

@@ -1,10 +1,19 @@
 package Type;
 import AST.*;
 public class IntegerType extends Type {
-		int value;
-		
+		public int value;
+		public int line;
+		public int pos;
+		public IntegerType(int value, int line, int pos){
+			this.value = value;
+			this.line = line;
+			this.pos = pos;
+		}		
         public IntegerType () {
 		}
+		public IntegerType(int value){
+			this.value = value;
+		}		
         public String toString() {
             return "int";
 		}
@@ -21,4 +30,10 @@ public class IntegerType extends Type {
 		public String toShortString(){
 			return null;
 		}
+		public int line(){
+			return line;
+		}
+		public void setLine(int line){
+			this.line = line;
+		};				
 }

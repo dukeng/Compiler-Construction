@@ -1,4 +1,6 @@
 package AST;
+import Type.*;
+
 
 public class FunctionCall extends Expression
 {
@@ -10,7 +12,7 @@ public class FunctionCall extends Expression
 		this.eList = eList;
 	}		
 
-	public void accept(Visitor v){
-		v.visit(this);
+	public Type accept(Visitor v){
+		return v.visit(this);
 	}
 }

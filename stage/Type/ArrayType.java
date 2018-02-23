@@ -29,4 +29,11 @@ public class ArrayType extends Type {
 	public String toShortString(){
 		return null;
 	}
+	public int line(){
+		return line;
+	}
+	public void setLine(int line){
+		this.line = line;
+	};
+	
 }

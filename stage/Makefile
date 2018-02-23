@@ -12,7 +12,8 @@ compiler:
 
 clean:
 	rm *.class $(GNAME)*.java $(GNAME)__.g $(GNAME).tokens
-
+	rm ./AST/*.class
+	rm ./Type/*.class
 accept:
 	java Compiler tests/a2.ul
 	java Compiler tests/statement.ul

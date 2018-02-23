@@ -1,5 +1,5 @@
 package AST;
-
+import Type.*;
 public class WrapperExpression extends Expression
 {
 	Literal literal;
@@ -14,7 +14,7 @@ public class WrapperExpression extends Expression
 		this.identifier = identifier;
 	}	
 	
-	public void accept(Visitor v){
-		v.visit(this);
+	public Type accept(Visitor v){
+		return v.visit(this);
 	}
 }

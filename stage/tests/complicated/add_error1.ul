@@ -1,0 +1,11 @@
+void main(){
+	int a;
+	int b;
+	char c;
+	boolean d;
+	string e;
+	float f;
+	
+	a = 1 + b;
+	b = c + e;
+}

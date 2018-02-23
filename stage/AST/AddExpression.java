@@ -1,5 +1,7 @@
 package AST;
 
+import Type.*;
+
 public class AddExpression extends Expression
 {
 	Expression e1;
@@ -11,8 +13,8 @@ public class AddExpression extends Expression
 		this.e2 = e2;
 	}
 	
-	public void accept(Visitor v)
+	public Type accept(Visitor v)
 	{
-		v.visit(this);
+		return v.visit(this);
 	}
 }

@@ -2,8 +2,12 @@
 package Type;
 import AST.*;
 public class VoidType extends Type {
-		int value;
-		
+		public int line;
+		public int pos;
+		public VoidType(int line, int pos){
+			this.line = line;
+			this.pos = pos;
+		}		
         public VoidType () {
 		}
         public String toString() {
@@ -23,4 +27,10 @@ public class VoidType extends Type {
 		public String toShortString(){
 			return null;
 		}
+		public int line(){
+			return line;
+		}		
+		public void setLine(int line){
+			this.line = line;
+		};		
 }

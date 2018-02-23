@@ -2,9 +2,19 @@
 package Type;
 import AST.*;
 public class CharType extends Type {
-		int value;
-		
+		public Character value;
+		public int line;
+		public int pos;
+		public CharType(Character value, int line, int pos){
+			this.value = value;
+			this.line = line;
+			this.pos = pos;
+		}
         public CharType () {
+		}
+
+		public CharType(Character value){
+			this.value = value;
 		}
         public String toString() {
             return "char";
@@ -18,9 +28,14 @@ public class CharType extends Type {
 
         public void accept (Visitor v) {
             // v.visit(this);
-            System.out.println("FLOATT");
 		}
 		public String toShortString(){
 			return null;
 		}
+		public int line(){
+			return line;
+		}		
+		public void setLine(int line){
+			this.line = line;
+		};		
 }

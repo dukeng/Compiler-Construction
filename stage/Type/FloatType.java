@@ -1,9 +1,19 @@
 package Type;
 import AST.*;
 public class FloatType extends Type {
-		int value;
-		
+		public float value;
+		public int line;
+		public int pos;
+		public FloatType(float value, int line, int pos){
+			this.value = value;
+			this.line = line;
+			this.pos = pos;
+		}		
         public FloatType () {
+		}
+
+		public FloatType(float value){
+			this.value = value;
 		}
         public String toString() {
             return "float";
@@ -22,4 +32,10 @@ public class FloatType extends Type {
 		public String toShortString(){
 			return null;
 		}
+		public int line(){
+			return line;
+		}		
+		public void setLine(int line){
+			this.line = line;
+		};		
 }

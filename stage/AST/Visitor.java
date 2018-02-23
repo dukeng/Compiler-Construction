@@ -16,8 +16,8 @@ public interface Visitor
 	public void visit (Block b);
 
 	public void visit (ExpressionStatement e);
-	public void visit (FunctionCall f);
-	public void visit (ArrayReference f);
+	public Type visit (FunctionCall f);
+	public Type visit (ArrayReference f);
 
 	public void visit (Identifier i);
 	// public void visit (IdentifierValue v);
@@ -29,13 +29,13 @@ public interface Visitor
 	public void visit (BooleanLiteral b);
 	public void visit (CharacterLiteral c);
 
-	public void visit (AddExpression e);
-	public void visit (LessThanExpression e);
-	public void visit (MultExpression e);
-	public void visit (EqualityExpression e);
-	public void visit (WrapperExpression e);
-	public void visit (SubtractExpression e);
-	public void visit (ParenExpression p);
+	public Type visit (AddExpression e);
+	public Type visit (LessThanExpression e);
+	public Type visit (MultExpression e);
+	public Type visit (EqualityExpression e);
+	public Type visit (WrapperExpression e);
+	public Type visit (SubtractExpression e);
+	public Type visit (ParenExpression p);
 
 	
 	public void visit (PrintLnStatement s);
@@ -45,8 +45,7 @@ public interface Visitor
 	public void visit (AssignmentStatement s);
 
 	public void visit (Type t);
-	public void visit (TypeNode t);
-
+	
 	public void visit (ArrayAssignment s);
 
 	public void visit (VariableAssignment s);

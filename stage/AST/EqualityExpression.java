@@ -1,5 +1,7 @@
 package AST;
 
+import Type.*;
+
 public class EqualityExpression extends Expression{
 
 	Expression e1;
@@ -9,7 +11,7 @@ public class EqualityExpression extends Expression{
 		this.e2 = e2;		
 	}
 
-	public void accept (Visitor v ){
-		v.visit(this);
+	public Type accept (Visitor v ){
+		return v.visit(this);
 	}
 }
