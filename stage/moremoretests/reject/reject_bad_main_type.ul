@@ -1,0 +1,6 @@
+void func(){
+  print "doing a thing";
+}
+
+int main(int thing){
+}

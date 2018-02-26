@@ -1,0 +1,10 @@
+void main(){
+	int a;
+	char c;
+	boolean b;
+	string s;
+	float f;
+	if (a){
+		
+	}	
+}

@@ -1,0 +1,6 @@
+void main(){
+  int i;
+  boolean b;
+  i = 5;
+  b = (i * i + i) == (i - i);
+}

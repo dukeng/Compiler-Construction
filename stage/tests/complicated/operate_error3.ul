@@ -1,0 +1,21 @@
+void main(){
+	int a;
+	int b;
+	char c;
+	boolean d;
+	string e;
+	float f;
+	int[10] aa;
+	int[5] bb;
+	float[5] cc;
+
+	d = 11 == 22;
+	d = aa == getAA();
+	d = aa == b;
+			
+}
+
+int[10] getAA(){
+	int[10] a;
+	return a;
+}

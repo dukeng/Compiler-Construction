@@ -1,0 +1,17 @@
+int foo(){
+  return 1;
+}
+
+void bar(string thing){
+  print thing;
+}
+
+void main(){
+  int result;
+  result = foo();
+  result = foo(5);
+
+  bar();
+  bar("thing");
+  bar("thing", 5);
+}

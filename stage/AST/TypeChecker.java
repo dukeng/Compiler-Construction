@@ -24,15 +24,13 @@ public class TypeChecker implements Visitor{
         print(toPrint);
         System.exit(0);
     }
-	private String indent(){
-		String a = "";
-		for(int k = 0; k < indentation*4; k ++){
-			a += " ";
-		}
-		return a;
-	}
+	private Set<Class> AddClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class));
+	private Set<Class> SubtractClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, CharType.class));
+	private Set<Class> MultClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class));
+	private Set<Class> LessThanClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class,BooleanType.class));
+	private Set<Class> EqualityClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class, BooleanType.class));
+		
 
-	// private Set<String> defined_var;
 	private HashMap<String, ArrayType> defined_var = new HashMap();
 	
 	private HashMap<String, FunctionDeclaration> defined_functions = new HashMap();
@@ -50,26 +48,24 @@ public class TypeChecker implements Visitor{
         Set<String> function_names = new HashSet<String>();
         
 		Boolean mainExist = false;
-		
-		
 
         for(Function f : program.functionList){
             if (function_names.contains(f.functionDecl.identifier.name)){
-                eprint("Two or more functions with the same name" + lineErr(f.functionDecl.line, f.functionDecl.pos));
+                eprint("Error:" + f.functionDecl.line +":Two or more functions with the same name at " + f.functionDecl.pos);
 			}
 			function_names.add(f.functionDecl.identifier.name);			
 			defined_functions.put(f.functionDecl.identifier.name, f.functionDecl);
 
 			if (f.functionDecl.identifier.name.equals("main")){ // 2.1.2
 				if (mainExist){
-					eprint("Two or more main "+ lineErr(f.functionDecl.line, f.functionDecl.pos));
+					eprint("Error:" + f.functionDecl.line + ":Two or more main at "+  f.functionDecl.pos);
 				}				
 				mainExist = true;
                 if (f.functionDecl.arrayType.subType instanceof VoidType &&
                     f.functionDecl.arrayType.compoundType == null &&
                     f.functionDecl.formalParameter.isEmpty()){
                 }else{
-					eprint("Main function either has non-voidType or has parameter"+ lineErr(f.functionDecl.line, f.functionDecl.pos));
+					eprint("Error:" + f.functionDecl.line + ":Main function either has non-voidType or has parameter at "+ f.functionDecl.pos);
 				}
             }
         }
@@ -80,7 +76,6 @@ public class TypeChecker implements Visitor{
 
     	for(Function f: program.functionList){
     		f.accept(this);
-    		print("\n");
 		}
 		print("PASSED!");
 	}
@@ -107,13 +102,13 @@ public class TypeChecker implements Visitor{
         Set<String> var_names = new HashSet<String>();	
 		for(VariableDeclaration varDecl : f.functionBody.variableDeclarationList.varDecList){
 			if (var_names.contains(varDecl.identifier.name)){
-				eprint("Duplicate name of variables" + lineErr(varDecl.line, varDecl.pos));
+				eprint("Error:" + varDecl.line + ":Duplicate name of variables at " + varDecl.pos);
 			}
 			var_names.add(varDecl.identifier.name);
 		}	
 		for (VariableDeclaration varDecl : f.functionBody.variableDeclarationList.varDecList){
 			if (defined_var.containsKey(varDecl.identifier.name)){
-				eprint("Local variable may not hide the name of a parameter" + lineErr(varDecl.line, varDecl.pos));
+				eprint("Error:" + varDecl.line + ":Local variable may not hide the name of a parameter at " +  varDecl.pos);
 			}
 			defined_var.put(varDecl.identifier.name, varDecl.arrayType);
 		}
@@ -130,7 +125,7 @@ public class TypeChecker implements Visitor{
 		//2.2.1 No two parameters of a function may have the same name 
 		for(int i = 0; i < f.identifiers.size(); i ++){
 			if (var_names.contains(f.identifiers.get(i).name)){
-				eprint("Duplicate name of parameters" + lineErr(f.identifiers.get(i).line, f.identifiers.get(i).pos));
+				eprint("Error:" + f.identifiers.get(i).line + ":Duplicate name of parameters at " +f.identifiers.get(i).pos);
 			}
 			var_names.add(f.identifiers.get(i).name);
 		}
@@ -138,7 +133,7 @@ public class TypeChecker implements Visitor{
 
 		for(int i = 0; i < f.arrayTypes.size(); i ++){
 			if (f.arrayTypes.get(i).subType instanceof VoidType){
-				eprint("Parameter with void type" + lineErr(f.arrayTypes.get(i).line, f.arrayTypes.get(i).pos));
+				eprint("Error:"+ f.arrayTypes.get(i).line + "Parameter with void type" + f.arrayTypes.get(i).pos);
 			}
 		}
 
@@ -155,7 +150,7 @@ public class TypeChecker implements Visitor{
 		for(VariableDeclaration varDecl : f.variableDeclarationList.varDecList){
 			// 2.2.4 no local var has type void
 			if (varDecl.arrayType.subType instanceof VoidType){
-				eprint("Local variable with void type" + lineErr(varDecl.line, varDecl.pos));
+				eprint("Error:" + varDecl.line + ":Local variable with void type at pos " + varDecl.pos);
 			}			
 		}
 
@@ -218,90 +213,122 @@ public class TypeChecker implements Visitor{
 	}
 
 	public Type visit(AddExpression f){
-		// print(f.e1.getClass().toString() + " Addexpression");
-		// print(f.e2.getClass().toString() + " Addexpression");
+		String typeExpression = "AddExpression";
 		Type t1 = f.e1.accept(this);
 		Type t2 = f.e2.accept(this);
-		print(t1.getClass().toString() + " Type in Addexpression");
-		print(t2.getClass().toString() + " Type in Addexpression");			
+		debug(t1.getClass().toString() + " Type in " + typeExpression);
+		debug(t2.getClass().toString() + " Type in " + typeExpression);			
 		if (!compareType(t1, t2)){
-			eprint("Error:" + t1.line()+ ":Type is not compatible in AddExpression " + t1.getClass().toString() + " and "  +t2.getClass().toString());
+			eprint("Error:" + t1.line()+ ":Type is not compatible in "   + typeExpression  + " "+ t1.getClass().toString() + " and "  +t2.getClass().toString());
 		}
-	
 		if(	t1 instanceof ArrayType || t1 instanceof VoidType || t1 instanceof BooleanType ||
 			t2 instanceof ArrayType || t2 instanceof VoidType || t2 instanceof BooleanType ){
-				eprint("Error:" + t1.line()+ ":Unallowed type in addExpression");
+				eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
 		}
-		Set<Class> classes = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class));
-		
 		if (t1.getClass() != t2.getClass() ){
-			eprint("Error:" + t1.line()+ ":Incompatible type in addExpression");
+			eprint("Error:" + t1.line()+ ":Incompatible type in " + typeExpression);
 		}
-		if (!classes.contains(t1.getClass())){
-			eprint("Error:" + t1.line()+ ":Unallowed type in addExpression");
+		if (!AddClasses.contains(t1.getClass())){
+			eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
 
 		}
 		return t1;
-
 	}
 	public Type visit(SubtractExpression f){
+		String typeExpression = "SubtractExpression";
 		Type t1 = f.e1.accept(this);
 		Type t2 = f.e2.accept(this);
+		debug(t1.getClass().toString() + " Type in " + typeExpression);
+		debug(t2.getClass().toString() + " Type in " + typeExpression);			
+		if (!compareType(t1, t2)){
+			eprint("Error:" + t1.line()+ ":Type is not compatible in "   + typeExpression + " "+ t1.getClass().toString() + " and "  +t2.getClass().toString());
+		}
 		if(	t1 instanceof ArrayType || t1 instanceof VoidType || t1 instanceof BooleanType ||
 			t2 instanceof ArrayType || t2 instanceof VoidType || t2 instanceof BooleanType ){
-				eprint("Incompatible type in addExpression");
+				eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
 		}
-		Set<String> classes = new HashSet<>(Arrays.asList("FloatType", "IntegerType", "CharType"));
-		
-		if (t1.getClass() != t2.getClass() || !classes.contains(t1.getClass())){
-			eprint("Imcompatile type in addExpression");
+		if (t1.getClass() != t2.getClass() ){
+			eprint("Error:" + t1.line()+ ":Incompatible type in " + typeExpression);
+		}
+		if (!SubtractClasses.contains(t1.getClass())){
+			eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
+
 		}
 		return t1;
 	}	
 	public Type visit(MultExpression f){
+		String typeExpression = "MultExpression";
 		Type t1 = f.e1.accept(this);
 		Type t2 = f.e2.accept(this);
+		debug(t1.getClass().toString() + " Type in " + typeExpression);
+		debug(t2.getClass().toString() + " Type in " + typeExpression);			
+		if (!compareType(t1, t2)){
+			eprint("Error:" + t1.line()+ ":Type is not compatible in "   + typeExpression + " "+ t1.getClass().toString() + " and "  +t2.getClass().toString());
+		}
 		if(	t1 instanceof ArrayType || t1 instanceof VoidType || t1 instanceof BooleanType ||
 			t2 instanceof ArrayType || t2 instanceof VoidType || t2 instanceof BooleanType ){
-				eprint("Incompatible type in addExpression");
+				eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
 		}
-		Set<String> classes = new HashSet<>(Arrays.asList("FloatType", "IntegerType"));
-		
-		if (t1.getClass() != t2.getClass() || !classes.contains(t1.getClass())){
-			eprint("Imcompatile type in addExpression");
+		if (t1.getClass() != t2.getClass() ){
+			eprint("Error:" + t1.line()+ ":Incompatible type in " + typeExpression);
+		}
+		if (!MultClasses.contains(t1.getClass())){
+			eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
+
 		}
 		return t1;
 	}
 	public Type visit(LessThanExpression f){
+		String typeExpression = "LessThanExpression";
 		Type t1 = f.e1.accept(this);
 		Type t2 = f.e2.accept(this);
-		if(	t1 instanceof ArrayType || t1 instanceof VoidType || t1 instanceof BooleanType ||
-			t2 instanceof ArrayType || t2 instanceof VoidType || t2 instanceof BooleanType ){
-				eprint("Incompatible type in addExpression");
+		debug(t1.getClass().toString() + " Type in " + typeExpression);
+		debug(t2.getClass().toString() + " Type in " + typeExpression);			
+		if (!compareType(t1, t2)){
+			eprint("Error:" + t1.line()+ ":Type is not compatible in "   + typeExpression + " "+ t1.getClass().toString() + " and "  +t2.getClass().toString());
 		}
-		Set<String> classes = new HashSet<>(Arrays.asList("FloatType", "IntegerType", "StringType", "CharType","BooleanType"));
-		
-		if (t1.getClass() != t2.getClass() || !classes.contains(t1.getClass())){
-			eprint("Imcompatile type in addExpression");
+		if(	t1 instanceof ArrayType || t1 instanceof VoidType ||
+			t2 instanceof ArrayType || t2 instanceof VoidType ){
+				eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
+		}
+		if (t1.getClass() != t2.getClass() ){
+			eprint("Error:" + t1.line()+ ":Incompatible type in " + typeExpression);
+		}
+		if (!LessThanClasses.contains(t1.getClass())){
+			eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
+
 		}
 		BooleanType returnType = new BooleanType();
-		// returnType.value = true;
-		return returnType;
+		returnType.line = t1.line();
+		// returnType.pos = t1.pos();
+		return returnType;		
 	}
 	public Type visit(EqualityExpression f){
+		String typeExpression = "EqualityExpression";
 		Type t1 = f.e1.accept(this);
 		Type t2 = f.e2.accept(this);
-		if(	t1 instanceof ArrayType || t1 instanceof VoidType || t1 instanceof BooleanType ||
-			t2 instanceof ArrayType || t2 instanceof VoidType || t2 instanceof BooleanType ){
-				eprint("Incompatible type in addExpression");
+		debug(t1.getClass().toString() + " Type in " + typeExpression);
+		debug(t2.getClass().toString() + " Type in " + typeExpression);			
+		if (!compareType(t1, t2)){
+			eprint("Error:" + t1.line()+ ":Type is not compatible in "   + typeExpression + " "+ t1.getClass().toString() + " and "  +t2.getClass().toString());
 		}
-		Set<String> classes = new HashSet<>(Arrays.asList("FloatType", "IntegerType", "StringType", "CharType", "BooleanType"));
-		
-		if (t1.getClass() != t2.getClass() || !classes.contains(t1.getClass())){
-			eprint("Imcompatile type in addExpression");
+		if(	 t1 instanceof VoidType ||
+			 t2 instanceof VoidType ){
+				eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
 		}
+		if (t1.getClass() != t2.getClass() ){
+			eprint("Error:" + t1.line()+ ":Incompatible type in " + typeExpression);
+		}
+		if (!EqualityClasses.contains(t1.getClass())){
+			eprint("Error:" + t1.line()+ ":Unallowed type in " + typeExpression);
+		}
+		// else if(t1.getClass() == ArrayType.class){
+		// 	if (((ArrayType)t1).compoundType.value != ((ArrayType)t2).compoundType.value ){
+		// 		eprint("Error:" + t1.line() + ":Incompatible array length to compare " + ((ArrayType)t1).compoundType.value + " and " + ((ArrayType)t2).compoundType.value);
+		// 	}
+		// }
 		BooleanType returnType = new BooleanType();
-		// returnType.value = true;
+		returnType.line = t1.line();
 		return returnType;
 	}	
 
@@ -310,7 +337,6 @@ public class TypeChecker implements Visitor{
 	}
 
 	public Type visit(WrapperExpression f){
-		// print("Wrapper Expression");
 		if(f.literal != null){
 			// print(f.literal.getClass().toString());
 			f.literal.accept(this);
@@ -318,21 +344,27 @@ public class TypeChecker implements Visitor{
 			if (f.literal instanceof BooleanLiteral){
 				returnType = new BooleanType(((BooleanLiteral) f.literal).value );
 				returnType.setLine(((BooleanLiteral) f.literal).line);
+				returnType.setPos(((BooleanLiteral) f.literal).pos);
+				
 			}else if (f.literal instanceof StringLiteral){
 				returnType = new StringType(((StringLiteral) f.literal).value);
 				returnType.setLine(((StringLiteral) f.literal).line);
+				returnType.setPos(((StringLiteral) f.literal).pos);
 
 			}else if (f.literal instanceof IntegerLiteral){
 				returnType = new IntegerType(((IntegerLiteral) f.literal).value);
 				returnType.setLine(((IntegerLiteral) f.literal).line);
+				returnType.setPos(((IntegerLiteral) f.literal).pos);
 				
 			}else if (f.literal instanceof FloatLiteral){
 				returnType = new FloatType(((FloatLiteral) f.literal).value);
 				returnType.setLine(((FloatLiteral) f.literal).line);
+				returnType.setPos(((FloatLiteral) f.literal).pos);
 				
 			}else if (f.literal instanceof CharacterLiteral){
 				returnType = new CharType(((CharacterLiteral) f.literal).value);
 				returnType.setLine(((CharacterLiteral) f.literal).line);
+				returnType.setPos(((CharacterLiteral) f.literal).pos);
 				
 			}else{
 				eprint("Error");
@@ -342,54 +374,55 @@ public class TypeChecker implements Visitor{
 		}else if (f.identifier != null){
 			//2.2.7
 			if (!this.defined_var.containsKey(f.identifier.name)){
-				eprint("Local variable must be defined before used" + lineErr(f.identifier.line, f.identifier.pos));
+				eprint("Error:"+ f.identifier.line +   ":Local variable must be defined before used at position: " + f.identifier.pos);
 			}
 			f.identifier.accept(this);
 			Type returnType = getTypeFromArrayType(this.defined_var.get(f.identifier.name));
-			returnType.setLine(f.identifier.line);		
+			returnType.setLine(f.identifier.line);
+			returnType.setPos(f.identifier.pos);		
 			return returnType;
 		}
 		print("ERRROR");
 		return null;
 	}
 	public Type visit(ParenExpression f){
-		print("(");
 		Type type = f.e.accept(this);
-		print(")");
 		return type;
 	}
-	//TODO: 
+
 	public Type visit(FunctionCall f){
 		if (!defined_functions.containsKey(f.identifier.name)){
-			eprint("Function must be defined before used" + lineErr(f.identifier.line, f.identifier.pos));
+			eprint("Error:" + f.identifier.line + ":Function must be defined before used at " + f.identifier.pos);
 		}
 		f.identifier.accept(this);
 		FunctionDeclaration funcDecl = defined_functions.get(f.identifier.name);
 		if(funcDecl.formalParameter.arrayTypes.size() != f.eList.expressionList.size()){
-			eprint("FormalParameter size is different in function call" + lineErr(f.identifier.line, f.identifier.pos));
+			eprint("Error:" + f.identifier.line + ":argument size is different in function call at position " + f.identifier.pos);
 		}
 		for(int i = 0; i <  f.eList.expressionList.size(); i ++){
 			//TODO: problem here, need to check for types of functioncall. I think it's done
 			Type argType = f.eList.expressionList.get(i).accept(this);
 			Type paramType  = getTypeFromArrayType(funcDecl.formalParameter.arrayTypes.get(i));
 			if (paramType.getClass() != argType.getClass()){
-				eprint("Type of formal parameters is different" + lineErr(f.identifier.line, f.identifier.pos));
+				eprint("Error:" + f.identifier.line +  ":Function Call: Type of argument at index " + String.valueOf(i) +  " is different, position: " + f.identifier.pos);
 			}
 		}
 		Type returnType = getTypeFromArrayType(funcDecl.arrayType);
 		returnType.setLine(f.identifier.line);
+		returnType.setPos(f.identifier.pos);		
+		
 		return returnType;
 	}
 
 	public Type visit(ArrayReference f){
 		//2.2.7
 		if (!this.defined_var.containsKey(f.identifier.name)){
-			eprint("Local variable must be defined before used" + lineErr(f.identifier.line, f.identifier.pos));
+			eprint("Error:" + f.identifier.line + ":Local variable must be defined before used " + f.identifier.pos);
 		}		
 		f.identifier.accept(this);
 		Type referenceType = f.e.accept(this);
 		if (referenceType == null || !(referenceType instanceof IntegerType)){
-			eprint("ArrayReference index must be an integer"+ lineErr(f.identifier.line, f.identifier.pos));
+			eprint("Error:" + f.identifier.line + ":Index must be an integer"+ f.identifier.pos);
 		}
 		return this.defined_var.get(f.identifier.name).subType; // returning the type of var
 	}
@@ -403,30 +436,44 @@ public class TypeChecker implements Visitor{
 	}
 	public void visit(VariableAssignment f){
 		if (!this.defined_var.containsKey(f.id.name)){
-			eprint("Error:" + f.id.line + "Local variable must be defined before used");
+			eprint("Error:" + f.id.line + ":Local variable must be defined before used at pos " + f.id.pos);
 		}		
 		f.id.accept(this);
-		// print("varassignment" +f.e.getClass().toString());
 		Type type =  f.e.accept(this);
-		if(type.getClass() != this.defined_var.get(f.id.name).subType.getClass()){
-			eprint("Error:" + f.id.line + ":VariableAssignment is of incompatible type: " + type.getClass().toString());
-		}		
+		ArrayType assignedType  = this.defined_var.get(f.id.name);
+
+
+
+		if(type.getClass() == ArrayType.class){
+			if ((assignedType).compoundType == null ){
+				eprint("Error:" + f.id.line + ":RHS is arrayType but LHS is " +  assignedType.subType.getClass().toString()  + " at " + f.id.pos );	
+			}
+			if (
+				((ArrayType)type).compoundType.value != assignedType.compoundType.value ||
+				((ArrayType)type).subType.getClass() != assignedType.subType.getClass() ){
+					eprint("Error:" + f.id.line + ":Variable ArrayAssignment is of incompatible type: " + " at pos " + + f.id.pos );
+				}
+		}else{
+			if(type.getClass() != assignedType.subType.getClass()){
+				eprint("Error:" + f.id.line + ":RHS and LHS is not compatible at pos "  + f.id.pos );							
+			}					
+		}
 	}
 	public void visit(ArrayAssignment f){
 		if (!this.defined_var.containsKey(f.id.name)){
-			eprint("Local variable must be defined before used" + lineErr(f.id.line, f.id.pos));
+			eprint("Error:" + f.id.line + ":Local variable must be defined before used" + f.id.pos);
 		}
 		if (this.defined_var.get(f.id.name).compoundType == null){
-			eprint("Local variable is not an array" + lineErr(f.id.line, f.id.pos));
+			eprint("Error:" + f.id.line + ":Local variable is not an array" + f.id.pos);
 		}
 		f.id.accept(this);
 		Type type = f.e1.accept(this);
 		if (!(type instanceof IntegerType )){
-			eprint("Array index type is not an integer" + lineErr(f.id.line, f.id.pos));
+			eprint("Error:" + f.id.line + ":Array index type is not an integer" + f.id.pos);
 		}
 		type = f.e2.accept(this);
 		if (type.getClass() != this.defined_var.get(f.id.name).subType.getClass()){
-			eprint("ArrayAssignment is of incompatible type" + lineErr(f.id.line, f.id.pos));
+			eprint("Error:" + f.id.line + ":ArrayAssignment is of incompatible type" + f.id.pos);
 		}
 	}
 
@@ -435,7 +482,7 @@ public class TypeChecker implements Visitor{
 	public void visit(IfStatement f){
 		Type condition = f.e.accept(this);
 		if (!(condition instanceof BooleanType)){
-			eprint("Error:X:" + "If condition is not a boolean");
+			eprint("Error:" + condition.line() + ":If condition is not a boolean at position " + condition.pos());
 		}
 		f.bl1.accept(this);
 		if (f.bl2 != null){
@@ -452,7 +499,7 @@ public class TypeChecker implements Visitor{
 	public void visit(WhileStatement f){	
 		Type condition = f.e.accept(this);
 		if (!(condition instanceof BooleanType)){
-			eprint("Error:X:" + "If condition is not a boolean");
+			eprint("Error:" + condition.line() + ":While condition is not a boolean at pos " +  condition.pos());
 		}
 		f.block.accept(this);
 
@@ -466,7 +513,7 @@ public class TypeChecker implements Visitor{
 			condition instanceof StringType ||
 			condition instanceof CharType ){
 		}else{
-			eprint("Error:X:" + "If condition is not a boolean");			
+			eprint("Error:" + condition.line() + ":Print argument is not an accepted type at pos " + condition.pos() );			
 		}
 	}
 
@@ -478,21 +525,29 @@ public class TypeChecker implements Visitor{
 			condition instanceof StringType ||
 			condition instanceof CharType ){
 		}else{
-			eprint("Error:X:" + "If condition is not a boolean");			
+			eprint("Error:" + condition.line() + ":PrintLn argument is not an accepted type at pos " + condition.pos() );			
 		}		
 	}
 
 	//TODO: maybe change the line to the line of the 'return' keyword instead. probably have to alter the grammar
 	public void visit(ReturnStatement f){
 		if (f.e != null){
-			print(f.e.getClass().toString());
+			// print(f.e.getClass().toString());
 			Type condition = f.e.accept(this);
 			if(current_function_type == null){
-				eprint("Error:" + condition.line() + ":Return in a non-return function");
+				eprint("Error:" + condition.line() + ":Return in a non-return function at pos " + condition.pos() );
 			}
 			if(current_function_type.getClass() != condition.getClass()){
-				eprint("Error:" + condition.line() + ":Incompatible Type in return statement" + current_function_type.getClass().toString() + "and" + condition.getClass().toString());				
+				eprint("Error:" + condition.line() + ":Incompatible return type. Expected: " + current_function_type.getClass().toString() 
+				+ " but got: " + condition.getClass().toString() + " at pos " + + condition.pos());				
+			}
+			if (current_function_type.getClass() == ArrayType.class){
+				if( ((ArrayType)current_function_type).compoundType.value != ((ArrayType)condition).compoundType.value){
+					eprint("Error:" + condition.line() + ":Length of array in return statement does not match: " 
+					+ String.valueOf(((ArrayType)current_function_type).compoundType.value) + " and " 
+					+ String.valueOf(((ArrayType)condition).compoundType.value) + " at pos " + + condition.pos() );
+				}
 			}
 		}
-	}		
+	}
 }

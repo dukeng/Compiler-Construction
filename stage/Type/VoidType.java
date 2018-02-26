@@ -32,5 +32,11 @@ public class VoidType extends Type {
 		}		
 		public void setLine(int line){
 			this.line = line;
-		};		
+		}
+		public int pos(){
+			return pos;
+		}		
+		public void setPos(int pos){
+			this.pos = pos;
+		}			
 }

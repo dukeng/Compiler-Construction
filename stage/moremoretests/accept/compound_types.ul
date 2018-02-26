@@ -1,0 +1,28 @@
+boolean doMath(float[1000] base, float factor, int depth){
+  int i;
+  i = 0;
+  while(i < depth){
+    base[i] = base[i] * factor;
+    i = i + 1;
+  }
+  return true;
+}
+
+void main(){
+  // make some arrays (compound types)
+  int[5] i;
+  void[2000] v;
+  string[3333] s;
+  char[50] c;
+  boolean[300] b;
+  float[1000] f;
+
+  f[0] = 1.5;
+  if ( doMath(f, f[0], 100) == true ){ // do some math
+    println "Yes";
+  }
+  else{
+    println "No";
+  }
+  return;
+}

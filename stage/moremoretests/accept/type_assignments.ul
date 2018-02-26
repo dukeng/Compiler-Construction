@@ -1,0 +1,10 @@
+void main(){
+  int foo;
+  boolean bar;
+  int[10] foobar;
+  int[10] barfoo;
+
+  foobar = barfoo;
+
+  bar = foo < 5;
+}

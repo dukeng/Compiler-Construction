@@ -1,0 +1,11 @@
+void thang(int a){
+}
+
+// int thing(int a, int b){
+//   return 1;
+// }
+
+
+void main(){
+  return;
+}

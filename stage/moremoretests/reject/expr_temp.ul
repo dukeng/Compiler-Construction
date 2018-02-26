@@ -1,0 +1,14 @@
+// This should be accepted by the antlr grammar, but the types are wrong so should fail in a later stage 
+void main(){
+  thing[thing];
+  thing(thing);
+  thing(thing[thing]);
+  thing(thing-thing[thing(thing[thing+thing])]);
+  thing + thing;
+  "thing" + what;
+  (thing);
+  thing[thing] + thing;
+  (thing) + (thing);
+  "thing" - (thing[thing-"thing"] + thing);
+  (thing + thing - (thing + thing[thing(thing+thing)]));
+}

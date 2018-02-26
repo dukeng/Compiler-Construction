@@ -1,0 +1,18 @@
+boolean func(string name, float cash){
+  boolean isBob;
+  print cash;
+  isBob = (name == "bob");
+  return isBob;
+}
+
+void main(){
+  char flag;
+  float money;
+  string name;
+  boolean yes;
+  int num;
+
+  name = "bob";
+  print func(name, 50.0);
+  return;
+}

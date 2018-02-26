@@ -1,0 +1,9 @@
+void main(){
+  int[10] things;
+  boolean thing;
+
+  thing = true;
+  things[5] = thing;
+  things[true] = 1;
+  return;
+}

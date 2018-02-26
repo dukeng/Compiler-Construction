@@ -1,0 +1,42 @@
+int functionWithoutParams(){
+  return 2;
+}
+
+int functionWithOneParam(int a){
+  return a * 2;
+}
+
+int functionWithMultiParams(int a, int b, char c){
+  println c;
+  return a * b;
+}
+
+void main(){
+  int[100] things;
+  int _var;
+
+  // on their own
+  functionWithOneParam(1000);
+  functionWithMultiParams(1,2,'c');
+  functionWithoutParams();
+  things[6];
+  _var;
+  "abc";
+  'd';
+  1.1;
+  5;
+  (_var);
+  (((("abcdefg"))));
+
+  // composition
+  things[5] = 5;
+  things[6] = functionWithMultiParams(things[5], 2, 'a');
+  things[7] = functionWithOneParam(1);
+  things[8] = functionWithoutParams();
+  things[9] = functionWithMultiParams(things[7], things[functionWithOneParam(things[functionWithOneParam(things[5])])], 'a');
+
+
+
+
+  return;
+}
