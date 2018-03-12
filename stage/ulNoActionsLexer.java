@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 ulNoActions.g 2018-02-25 18:17:07
+// $ANTLR 3.0.1 ulNoActions.g 2018-02-25 20:49:41
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -6,38 +6,38 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ulNoActionsLexer extends Lexer {
-    public static final int COMMENT=15;
+    public static final int CHARACTERCONSTANT=13;
+    public static final int ELSE=8;
+    public static final int T29=29;
+    public static final int T28=28;
+    public static final int T27=27;
+    public static final int T26=26;
+    public static final int T25=25;
+    public static final int ID=4;
+    public static final int INTEGERCONSTANT=6;
+    public static final int Tokens=34;
+    public static final int T24=24;
+    public static final int EOF=-1;
+    public static final int T23=23;
+    public static final int TRUE=9;
+    public static final int T22=22;
     public static final int T21=21;
     public static final int T20=20;
-    public static final int T23=23;
-    public static final int T22=22;
-    public static final int T25=25;
-    public static final int T24=24;
-    public static final int STRINGCONSTANT=11;
-    public static final int T27=27;
-    public static final int ELSE=8;
-    public static final int T26=26;
-    public static final int T29=29;
-    public static final int ID=4;
-    public static final int T28=28;
-    public static final int WS=14;
-    public static final int EOF=-1;
-    public static final int TYPE=5;
     public static final int IF=7;
-    public static final int Tokens=34;
-    public static final int CHARACTERCONSTANT=13;
-    public static final int TRUE=9;
+    public static final int TYPE=5;
+    public static final int WS=14;
+    public static final int STRINGCONSTANT=11;
     public static final int FLOATCONSTANT=12;
+    public static final int COMMENT=15;
+    public static final int T33=33;
+    public static final int FALSE=10;
+    public static final int T16=16;
+    public static final int T17=17;
+    public static final int T18=18;
     public static final int T30=30;
+    public static final int T19=19;
     public static final int T32=32;
     public static final int T31=31;
-    public static final int INTEGERCONSTANT=6;
-    public static final int T33=33;
-    public static final int T16=16;
-    public static final int FALSE=10;
-    public static final int T18=18;
-    public static final int T17=17;
-    public static final int T19=19;
     public ulNoActionsLexer() {;} 
     public ulNoActionsLexer(CharStream input) {
         super(input);
@@ -1462,7 +1462,7 @@ public class ulNoActionsLexer extends Lexer {
 
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
-        "\11\uffff\1\40\3\34\4\uffff\10\34\2\uffff\1\56\5\uffff\7\34\1\67"+
+        "\11\uffff\1\40\3\34\4\uffff\10\34\2\uffff\1\57\5\uffff\7\34\1\67"+
         "\5\34\2\uffff\6\34\1\103\1\uffff\10\34\1\114\2\34\1\uffff\1\103"+
         "\2\34\1\103\1\121\1\122\1\124\1\34\1\uffff\1\126\1\103\2\34\2\uffff"+
         "\1\34\1\uffff\1\132\1\uffff\1\103\1\34\1\134\1\uffff\1\103\1\uffff";
@@ -1487,7 +1487,7 @@ public class ulNoActionsLexer extends Lexer {
     static final String DFA11_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\4\uffff\1\17\1\20\1\21"+
         "\1\22\10\uffff\1\30\1\31\1\uffff\1\34\1\35\1\36\1\16\1\11\15\uffff"+
-        "\1\32\1\33\7\uffff\1\26\13\uffff\1\25\10\uffff\1\23\4\uffff\1\27"+
+        "\1\33\1\32\7\uffff\1\26\13\uffff\1\25\10\uffff\1\23\4\uffff\1\27"+
         "\1\12\1\uffff\1\14\1\uffff\1\24\3\uffff\1\15\1\uffff\1\13";
     static final String DFA11_specialS =
         "\135\uffff}>";
@@ -1523,7 +1523,7 @@ public class ulNoActionsLexer extends Lexer {
             "\1\55",
             "",
             "",
-            "\1\57\1\uffff\12\33",
+            "\1\56\1\uffff\12\33",
             "",
             "",
             "",

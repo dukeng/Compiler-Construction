@@ -3,7 +3,7 @@
 #find ./tests/withoutSubtypes/withoutSubtypes -name "*.ul" | sort -n > source.txt
 
 #find ./moremoretests/reject/ -name "*.ul" > source.txt
-find ./tests/complicated/ -name "*.ul"  > source.txt 
+find ./tests/valid/ -name "*.ul"  > source.txt 
 filename="source.txt"
 while read -r line
 do

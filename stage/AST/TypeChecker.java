@@ -24,11 +24,11 @@ public class TypeChecker implements Visitor{
         print(toPrint);
         System.exit(0);
     }
-	private Set<Class> AddClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class));
-	private Set<Class> SubtractClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, CharType.class));
-	private Set<Class> MultClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class));
-	private Set<Class> LessThanClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class,BooleanType.class));
-	private Set<Class> EqualityClasses = new HashSet<>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class, BooleanType.class));
+	private Set<Class> AddClasses = new HashSet<Class>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class));
+	private Set<Class> SubtractClasses = new HashSet<Class>(Arrays.asList(FloatType.class, IntegerType.class, CharType.class));
+	private Set<Class> MultClasses = new HashSet<Class>(Arrays.asList(FloatType.class, IntegerType.class));
+	private Set<Class> LessThanClasses = new HashSet<Class>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class,BooleanType.class));
+	private Set<Class> EqualityClasses = new HashSet<Class>(Arrays.asList(FloatType.class, IntegerType.class, StringType.class, CharType.class, BooleanType.class));
 		
 
 	private HashMap<String, ArrayType> defined_var = new HashMap();

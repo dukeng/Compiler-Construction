@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 ulNoActions.g 2018-02-25 18:17:07
+// $ANTLR 3.0.1 ulNoActions.g 2018-02-25 20:49:41
 
         import AST.*;
         import Type.*;
@@ -14,19 +14,19 @@ public class ulNoActionsParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ID", "TYPE", "INTEGERCONSTANT", "IF", "ELSE", "TRUE", "FALSE", "STRINGCONSTANT", "FLOATCONSTANT", "CHARACTERCONSTANT", "WS", "COMMENT", "'('", "')'", "'{'", "'}'", "'['", "']'", "','", "';'", "'='", "'while'", "'println'", "'print'", "'return'", "'=='", "'<'", "'+'", "'-'", "'*'"
     };
-    public static final int CHARACTERCONSTANT=13;
-    public static final int TRUE=9;
-    public static final int FLOATCONSTANT=12;
-    public static final int COMMENT=15;
-    public static final int INTEGERCONSTANT=6;
-    public static final int STRINGCONSTANT=11;
-    public static final int ELSE=8;
-    public static final int FALSE=10;
-    public static final int ID=4;
     public static final int WS=14;
+    public static final int CHARACTERCONSTANT=13;
+    public static final int STRINGCONSTANT=11;
+    public static final int FLOATCONSTANT=12;
+    public static final int ELSE=8;
+    public static final int COMMENT=15;
+    public static final int ID=4;
+    public static final int INTEGERCONSTANT=6;
+    public static final int FALSE=10;
     public static final int EOF=-1;
-    public static final int TYPE=5;
+    public static final int TRUE=9;
     public static final int IF=7;
+    public static final int TYPE=5;
 
         public ulNoActionsParser(TokenStream input) {
             super(input);
@@ -1334,14 +1334,14 @@ public class ulNoActionsParser extends Parser {
             case ID:
                 {
                 switch ( input.LA(2) ) {
-                case 16:
-                    {
-                    alt13=2;
-                    }
-                    break;
                 case 20:
                     {
                     alt13=1;
+                    }
+                    break;
+                case 16:
+                    {
+                    alt13=2;
                     }
                     break;
                 case 17:
@@ -2006,39 +2006,25 @@ public class ulNoActionsParser extends Parser {
     }
     // $ANTLR end synpred10
 
+    public final boolean synpred9() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred9_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
     public final boolean synpred5() {
         backtracking++;
         int start = input.mark();
         try {
             synpred5_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred2() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred4() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred4_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -2062,6 +2048,20 @@ public class ulNoActionsParser extends Parser {
         failed=false;
         return success;
     }
+    public final boolean synpred2() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
     public final boolean synpred3() {
         backtracking++;
         int start = input.mark();
@@ -2076,11 +2076,11 @@ public class ulNoActionsParser extends Parser {
         failed=false;
         return success;
     }
-    public final boolean synpred9() {
+    public final boolean synpred4() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred9_fragment(); // can never throw exception
+            synpred4_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
