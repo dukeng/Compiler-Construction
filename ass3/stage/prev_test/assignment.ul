@@ -1,0 +1,13 @@
+void a(){
+	int a;
+	int[3] b;
+	float c;
+	float[3] d;
+	string[2] aa;
+	string[1] a;
+	void e;
+	void [234] e;
+	boolean f;
+	boolean [2] g;
+		
+}

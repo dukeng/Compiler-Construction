@@ -1,0 +1,15 @@
+void foo(int foo, float foo, int bar, void thing){
+  int foo;
+  float bar;
+  int foobar;
+  boolean foobar;
+}
+
+void main(){
+
+}
+
+void main(){
+  void blah;
+  foo();
+}

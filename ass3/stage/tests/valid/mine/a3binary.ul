@@ -1,0 +1,20 @@
+
+void main(){
+}
+
+void add(){
+	int i;
+	float f;
+	boolean b;
+	string s;
+	char c;
+	i = 1 + 2;
+	f = 0.3 - 3.3;
+	s = "e" + "r";
+	i = 3 * 3;
+	i = 6 - 3;
+	b = 4 == 3;
+	b = 4 < 3;
+}
+
+

@@ -1,0 +1,6 @@
+void main(){
+  int thing;
+  thing = 1;
+  int otherThing;
+  return;
+}

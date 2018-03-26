@@ -1,0 +1,4 @@
+int main(){
+	c = 4;
+	int c;
+}

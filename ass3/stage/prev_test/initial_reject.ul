@@ -1,0 +1,6 @@
+// statement before decl. Cant have name void?
+
+void a(){
+	
+}
+test

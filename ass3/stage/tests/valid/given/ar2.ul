@@ -1,0 +1,14 @@
+void main()
+{
+	int[3] x;
+	int i;
+
+	i = 0;
+
+	while (i < 3)
+	{
+		println x[i];
+		i = i + 1;
+	}
+	i = 100;
+}

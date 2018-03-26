@@ -1,0 +1,5 @@
+int notLegit;
+
+void main(){
+  int legit;
+}

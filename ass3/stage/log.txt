@@ -1,0 +1,205 @@
+./runall.sh
+Running on file ./moretests/invalid/2.2.4_invalid.ul
+void main() {
+
+}
+
+int foo() {
+    void a;
+}
+
+
+Local variable with void type at line: 6 position: 9
+Running on file ./moretests/invalid/3.3.b_invalid.ul
+void main() {
+    float a;
+    a = 3;
+    foo(a);
+}
+
+void foo(int b) {
+
+}Running on file ./moretests/invalid/2.2.1_invalid.ul
+void main() {
+
+}
+
+int foo(int a, int a) {
+
+}
+
+
+Duplicate name of parameters at line: 5 position: 19
+Running on file ./moretests/invalid/3.1.3_invalid.ul
+void main() {
+    print foo() + 1;
+
+}
+
+void foo() {
+
+}Running on file ./moretests/invalid/2.1.1_invalid.ul
+Running on file ./moretests/invalid/3.2.2.a_invalid.ul
+void main() {
+    int a;
+    float b;
+    float c;
+    c = b + a;    
+}Running on file ./moretests/invalid/2.1.2a_invalid.ul
+void main(int foo) {
+
+}Main function either has non-voidType or has parameter at line: 1 position: 5
+Running on file ./moretests/invalid/2.2.6_invalid.ul
+void main() {
+
+}
+
+void foo(int a) {
+    int a;
+}
+
+
+
+Local variable may not hide the name of a parameter at line: 6 position: 8
+Running on file ./moretests/invalid/3.2.2.c_invalid.ul
+void main() {
+    string s1;
+    string s2;
+    string s3;
+    s3 = s2 * s1;
+}Running on file ./moretests/invalid/3.1.1_invalid.ul
+void main() {
+    int n;
+    if (n) {
+        n++;
+    }
+}
+Running on file ./moretests/invalid/2.1.2b_invalid.ul
+int main() {
+
+}Main function either has non-voidType or has parameter at line: 1 position: 4
+Running on file ./moretests/invalid/3.1.6_invalid.ul
+void main() {
+    int a;
+    float b;
+    b = a;
+}Running on file ./moretests/invalid/3.3.a_invalid.ul
+void main() {
+    foo(3);
+}
+
+void foo(int a, float b) {
+
+}Running on file ./moretests/invalid/3.1.4_invalid.ul
+void main() {
+    println foo() + 1;
+
+}
+
+void foo() {
+
+}Running on file ./moretests/invalid/3.1.2_invalid.ul
+void main() {
+    int n;
+    while (n) {
+        n++;
+    }
+}
+Running on file ./moretests/invalid/2.2.3_invalid.ul
+void main() {
+
+}
+
+int foo(void a, int b) {
+
+}
+
+
+Parameter with void type at line: 5 position: 8
+Running on file ./moretests/invalid/2.2.2_invalid.ul
+void main() {
+
+}
+
+int foo(int a, int b) {
+    int x;
+    int x;
+}
+
+
+Duplicate name of variables at line: 7 position: 8
+Running on file ./moretests/invalid/3.1.5_invalid.ul
+void main() {
+
+}
+
+int foo() {
+    float a;
+    a = 5.1;
+    return a;
+}
+
+Running on file ./moretests/invalid/3.2.2.e_invalid.ul
+void main() {
+    string s1;
+    int i;
+    boolean a;
+    
+    a = (c == i);
+}Running on file ./moretests/invalid/2.2.7_invalid.ul
+void main() {
+
+}
+
+void foo(int a) {
+    b = a + 1;
+}
+
+
+
+Error:6Local variable must be defined before used
+Running on file ./moretests/invalid/3.2.2.b_invalid.ul
+void main() {
+    string s1;
+    string s2;
+    string s3;
+    s3 = s2 - s1;
+
+    int a;
+    float b;
+    float c;
+    c = b - a;
+}Running on file ./moretests/invalid/3.2.2.d_invalid.ul
+void main() {
+    string s;
+    char c;
+    boolean a;
+    
+    a = c < s;
+}Running on file ./moretests/invalid/2.2.5_invalid.ul
+void main() {
+
+}
+
+int foo(int foo) {
+    return foo+1;
+}
+
+
+Running on file ./moretests/invalid/2.1.3_invalid.ul
+void main() {
+
+}
+
+int foo() {
+
+}
+
+void foo() {
+    
+}Two or more functions with the same name at line: 9 position: 5
+Running on file ./moretests/invalid/3.2.1_invalid.ul
+void main() {
+    int a[3];
+    print a[true];
+}

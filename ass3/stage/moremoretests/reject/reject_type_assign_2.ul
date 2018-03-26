@@ -1,0 +1,6 @@
+void main(){
+  void thing;
+  char blah;
+
+  void = blah;
+}

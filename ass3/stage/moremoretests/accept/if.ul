@@ -1,0 +1,54 @@
+boolean destroyTheWorld(){
+  boolean success;
+  println("Initiating destruction");
+  success = true;
+  return true;
+}
+
+boolean onlyIfYouAreSure(boolean _check1, boolean _check2, boolean _check3){
+  if(_check1){
+    if(_check2){
+      if(_check3){
+        return destroyTheWorld();
+      }
+      else{
+        println "Good one";
+      }
+    }
+    else{
+      println "Not too late to turn back";
+    }
+  }
+  else{
+    println "OK you were kidding";
+    if(_check2){
+      println "Wait what";
+      if(_check3){
+        println "Two is good enough";
+        return destroyTheWorld();
+      }
+    }
+  }
+  return false;
+}
+
+void main(){
+  boolean thing;
+  boolean didIt;
+  thing = true;
+  didIt = false;
+  if(true){
+    if(true == false){
+      println("Something is wrong");
+    }
+    else{
+      println("Something is right");
+    }
+  }
+  if(thing){
+    didIt = onlyIfYouAreSure(true,true,thing);
+  }
+  if(didIt){
+    println("WHAT");
+  }
+}

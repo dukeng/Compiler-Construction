@@ -1,0 +1,10 @@
+PROG hello
+FUNC main ()I
+{
+  TEMP I;
+  TEMP I;
+  TEMP I;
+  TEMP I;
+FUNC b ()I
+{
+}

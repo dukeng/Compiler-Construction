@@ -1,0 +1,26 @@
+void main(){
+	int a;
+	char c;
+	boolean b;
+	string s;
+	float f;
+	int[12] ia;
+	float[12] fa;
+	ia = retIntArr(s,a,f);
+	fa = retIntArr(s,a,f);
+}
+
+int retInt(){
+	return 1; }
+float retFlt(){
+	return 1.1; }
+boolean retBol(){
+	return true; }
+string retStr(){
+	return "str"; }
+char retChr(){
+	return 'c'; }
+int retInt2(int a, float b, boolean c){	return 2;}
+float retFlt2(boolean a, string b, char c){ return 2.2; }
+int[12] retIntArr(string b, int d, float c){ int[12] a; return a;}
+float[12] retFltArr(){ float[12] b; return b;}

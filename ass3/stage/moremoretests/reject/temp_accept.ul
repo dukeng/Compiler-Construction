@@ -1,0 +1,13 @@
+// This should be accepted by the antlr grammar, but the types are wrong so should fail in a later stage 
+int main(){
+  void a;
+  void b;
+  int c;
+  boolean d;
+  string f;
+  f = "abcd";
+
+  c = f;
+  b = f;
+  f = 'a';
+}

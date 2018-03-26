@@ -1,0 +1,30 @@
+
+void main(){
+
+}
+
+int varDec(){
+	int i;
+	float f;
+	char c;
+	string s;
+	int ii;
+
+	int[10] ai;
+	float[10] af;
+	char[10] ac;
+	string[10] as;
+	boolean[10] ab;
+
+	i = 1 + 1;
+	f = 1.2 + 3.2;
+	ii = 3;
+	i = i + ii;
+	s = "ewrwer";
+	c = 'e';
+	as[0] = s;
+	ab[1] = true;
+	af[2] = 2.23; 
+		
+	return 1;
+}

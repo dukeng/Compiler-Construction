@@ -1,0 +1,137 @@
+// werwerwefaergaergsergsergerg.serg32r234r34t
+void werweEWER3r (int e){
+	int alex;
+	e = 3;
+	e = 4;
+	alex = pass;
+}
+
+// sample.ul
+int werweEWER3r (int e){
+	int alex;
+	e = 3;
+	e = 4;
+	alex = pass;
+}
+
+// sample.ul
+
+int factorial ( int n ){
+	if (n == 1){
+		return 1;
+	}
+	else{
+		return n*factorial(n-1);
+	}
+}
+
+
+void main(){
+	print " The factorial of 8 is " ;
+	println factorial (8);
+}
+
+// Test assignment
+int testAssignment(){
+	int a;
+	float b;
+	char c;
+	string d;
+	boolean e;
+	void f;
+}
+
+
+// Test statement
+int testStatement(){
+	b = c;
+	e = d;
+	a = 3.2;
+	d = "";
+	e = ew;	
+}
+
+
+// test operands
+int testOperand(){
+	intC = 1+2;
+	intC = 1-2;
+	intC = 1+2*3;
+	a;
+	c = 4*4*4;
+	c = 4*4*3*3 * 3 * (3) * 3 * (3) * ((3));
+	d = 3 == 3 == 4 == 4 == (3);
+	e();
+}
+
+
+// test if else
+int testIfElse(int abc, float def, void aewr, string abre){
+	if (c == d){
+
+	}else{
+	
+	}
+}
+
+// test expression
+
+void test(float a){
+	a = 1 == 2 == 3 == 4 + 4 - 4 - 5 - b - r -c;
+	a = id[egresrg];
+	a[3] = id[id[id[id[3]]]];
+	a (more1, more2, more_3);
+	a;
+	((((a))));
+
+}
+
+
+// test statement
+
+string test(string a, string d, string b, string c){
+	if (a == 1 == 1 == 2 == 3){
+		if (b == 3 == 3 == 3 == 3 - 22 -3 + (323 - 3)){
+
+		}
+	}
+
+	if (a){
+		b;
+	}
+	else{
+		c;
+	}
+	print (wefwefwef);
+	print normal;
+	print "while";
+	println erwerwerwer;
+	a = b[3];
+	c[4] = d[4];
+
+}
+
+// 
+
+int main(){
+	
+}
+
+// edge case
+
+string a(){
+	;;;
+}
+
+void a(){
+	a = 0000;
+	b = 00009;
+	c = 000.000;
+	c = "___fewf w rgerg FEGEWRGF fwre gergewerweEWER3r";
+	;;;;;;;;;;;;;;;;;;;;;
+	;					;
+	;		;;;		;;	;
+	(wewevwvwr + wewevwvwr - (wewevwvwr + wewevwvwr[wewevwvwr(wewevwvwr+wewevwvwr)]));
+}
+
+// test comments in last line

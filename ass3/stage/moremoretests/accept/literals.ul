@@ -1,0 +1,51 @@
+void printChar(char in){
+  char c;
+  c = in;
+  println c;
+}
+
+int doMath(int a, int b){
+  return a * (b + (a*a*a));
+}
+
+void main(){
+  char c;
+  int i;
+  string s;
+  float f;
+  boolean b;
+
+  c = 'a';
+  print c;
+  printChar(c);
+
+  i = 5;
+  doMath(i, 6);
+
+  b = true;
+  if(b){
+    println doMath(i*(i+7), 10);
+  }
+
+  s = "abc123__  fff";
+
+  if(false){
+    print s;
+    print s;
+    print s;
+  }
+
+  f = 1.0;
+  if(f < 2.0){
+    while(i < 10){
+      i = i + 1;
+      println f;
+      print s;
+    }
+  }
+  else{
+    println "nope";
+  }
+
+  return;
+}

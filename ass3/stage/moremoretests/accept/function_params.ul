@@ -1,0 +1,12 @@
+int func(int a, float b, char c, string d){
+  println a;
+  println b;
+  println c;
+  println d;
+
+  return a * a + a;
+}
+
+void main(){
+  func(1,0.1,'d',"Running a function with parameters");
+}

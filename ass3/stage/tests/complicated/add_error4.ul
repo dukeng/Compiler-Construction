@@ -1,0 +1,12 @@
+void main(){
+	int a;
+	char c;
+	boolean b;
+	string s;
+	float f;
+	a = 1 + 1 + 1;
+	b = true;
+	b = false;
+	s = "ERWE" + c;
+	
+}

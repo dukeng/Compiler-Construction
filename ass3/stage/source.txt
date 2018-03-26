@@ -1,0 +1,9 @@
+./tests/valid/given/expr.ul
+./tests/valid/given/fact.ul
+./tests/valid/given/ar2.ul
+./tests/valid/given/foo3.ul
+./tests/valid/given/ar.ul
+./tests/valid/given/foo.ul
+./tests/valid/given/foo4.ul
+./tests/valid/given/if.ul
+./tests/valid/given/foo2.ul

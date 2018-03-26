@@ -1,0 +1,11 @@
+void main(){
+  int foo;
+  char bar;
+  foo = 1;
+  bar = foo;
+  bar = (5 == 5);
+  bar = (5 + 5);
+  bar = (5 - 5);
+  bar = (5 < 5);
+  bar = (5 * 5);
+}

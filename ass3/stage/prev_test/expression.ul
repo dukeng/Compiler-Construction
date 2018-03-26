@@ -1,0 +1,18 @@
+int expression(int b){
+	;
+	a;
+	a+b+c+1+2+""+ " " + 'e' + "abc";
+	a-b+c*d<e==f;
+	a[a+b-c*d==e<f];
+	a(a+b, a-b, a*b, a <b, a(b), a());
+	1;
+	"abc";
+	'a';
+	true;
+	false;
+	1.1;
+	0.31;
+	(a);
+	(a+a);
+	(a+1+" " + 'a');
+}

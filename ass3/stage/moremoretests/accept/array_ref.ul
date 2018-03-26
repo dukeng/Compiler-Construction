@@ -1,0 +1,13 @@
+void main(){
+  int[10] things;
+  int thing;
+  float otherThing;
+
+  things[5] = 1;
+ 
+  thing = things[5] + 1200;
+  otherThing = things[5];
+
+  print things[5];
+  print otherThing;
+}

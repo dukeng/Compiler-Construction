@@ -1,0 +1,16 @@
+
+int one (int a, int b, int c){
+	
+}
+
+int [1] two (int[12] a , int[1] b, float c){
+	
+}
+
+float[3] three(string[1] a, boolean[2] b, void[3] c, char[4] d ){
+	
+}
+
+string four(){
+	
+}

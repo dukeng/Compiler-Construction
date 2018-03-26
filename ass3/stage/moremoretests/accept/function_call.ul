@@ -1,0 +1,20 @@
+int foo(){
+  println "foo";
+}
+
+int doThing(int one, float two){
+  print one;
+  print " ";
+  print two;
+}
+
+void main(){
+  int bar;
+
+  foo();
+  doThing(1,2);
+  bar = 20;
+  doThing(2,bar);
+
+  return;
+}

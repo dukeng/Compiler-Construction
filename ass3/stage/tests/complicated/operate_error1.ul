@@ -1,0 +1,23 @@
+void main(){
+	int a;
+	int b;
+	char c;
+	boolean d;
+	string e;
+	float f;
+	
+	a = a + 1;
+	a = a * 1;
+	a = a - 1;
+	b = b * a +  234;
+	b = b*b*b - 1 + a *3;
+	d = true;
+	d = a == b;
+	d = c == 'a';
+	d = d == true;
+	d = a < b;
+	d = f == 0.1;
+	d = false == true;
+	f = false == e;
+		
+}

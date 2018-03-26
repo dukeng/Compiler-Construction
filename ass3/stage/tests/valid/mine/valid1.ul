@@ -1,0 +1,51 @@
+void main(){
+	int a;
+	int b;
+	int c;
+	float d;
+	boolean e;
+	string f;
+	char g;
+	int[12] z;
+	z = call(1, 2.2, "ERWER", 'd', false);
+}
+
+int fibonacci(int a){
+	if(a == 0){
+		return 0;
+	}
+	return fibonacci(a-1);
+}
+
+float getF(){
+	float a;
+	a = 10.0;
+	return a;
+}
+
+void callFunc(){
+	float a;
+	int b;
+	b = fibonacci(32);
+	a = getF();
+}
+
+int[12] call(int a, float b, string c, char d, boolean e){
+	int[12] z;
+	if(e){
+		a = 3;
+	}
+	if(b == 0.32){
+		b = 0.23;	
+	}else{
+		d = '4';
+	}
+	
+	a = z[3];
+	
+	while(e){
+		return z;
+	}
+
+	return z;
+}

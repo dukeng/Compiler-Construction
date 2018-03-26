@@ -1,0 +1,23 @@
+PROG tests/valid/ar.ul.ir
+FUNC main ()V
+{
+  TEMP 0:AI;
+  TEMP 1:I;
+  TEMP 2:I;
+  TEMP 3:I;
+  TEMP 4:I;
+  TEMP 5:I;
+  TEMP 6:I;
+  TEMP 7:I;
+  T0 := NEWARRAY I 3;
+  T2 := 7;
+  T3 := 0;
+  T0[T3] := T2;
+  T4 := 1;
+  T1 := T4;
+  T5 := 2;
+  T6 := 1;
+  T7 := T1 I+ T6;
+  T0[T7] := T5;
+  RETURN;
+}
